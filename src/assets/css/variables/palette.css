@@ -1,0 +1,13 @@
+:root {
+  --color-black: #1e1f1e;
+  --color-white: #f6f6f6;
+  --color-gray: #dcdbd9;
+  --color-beige: #eeebe7;
+  --color-red: #e74228;
+  --color-purple: #a1b5ff;
+
+  --color-black-rgba-0: rgb(30 31 30 / 0);
+  --color-black-rgba-08: rgb(0 0 0 / 0.08);
+  --color-black-rgba-74: rgb(0 0 0 / 0.74);
+  --color-purple-rgba-20: rgb(161 181 255 / 0.2);
+}
