@@ -1,0 +1,20 @@
+:root {
+  --text-weight-xs: 400;
+  --text-weight-s: 500;
+  --text-weight-m: 600;
+  --text-weight-l: 700;
+
+  --text-size-xs: 12px;
+  --text-size-s: 14px;
+  --text-size-m: 16px;
+  --text-size-l: 18px;
+  --text-size-xl: 24px;
+
+  --text-line-xxs: 16px;
+  --text-line-xs: 20px;
+  --text-line-s: 22px;
+  --text-line-m: 24px;
+  --text-line-l: 26px;
+  --text-line-xl: 28px;
+  --text-line-xxl: 30px;
+}
