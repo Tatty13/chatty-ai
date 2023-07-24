@@ -1,0 +1,30 @@
+@import url('./palette.css');
+
+:root {
+  --color-bg-brand: var(--color-purple, #a1b5ff);
+  --color-bg-primary: var(--color-beige, #eeebe7);
+  --color-bg-secondary: var(--color-gray, #dcdbd9);
+  --color-bg-cards: var(--color-white, #f6f6f6);
+
+  --color-text-brand: var(--color-purple, #a1b5ff);
+  --color-text-primary: var(--color-black, #1e1f1e);
+  --color-text-error: var(--color-red, #e74228);
+
+  --linear-gradient-top: linear-gradient(
+    0deg,
+    var(--color-black, #1e1f1e) 0%,
+    var(--color-black-rgba-0, rgb(30 31 30 / 0)) 100%
+  );
+  --linear-gradient-bottom: linear-gradient(
+    180deg,
+    var(--color-black, #1e1f1e) 24.48%,
+    var(--color-black-rgba-0, rgb(30 31 30 / 0)) 100%
+  );
+
+  --border-primary: 1px solid var(--color-black, #1e1f1e);
+  --border-brand: 1px solid var(--color-purple, #a1b5ff);
+  --border-error: 1px solid var(--color-red, #e74228);
+
+  --box-shadow-black-08-primary: 0px 4px 20px 0px
+    var(--color-black-rgba-08, rgb(0 0 0 / 0.08));
+}
