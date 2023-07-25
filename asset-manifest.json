@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/chatty-ai/static/css/main.692fa96c.css",
+    "main.js": "/chatty-ai/static/js/main.cf0ac6e3.js",
+    "index.html": "/chatty-ai/index.html",
+    "main.692fa96c.css.map": "/chatty-ai/static/css/main.692fa96c.css.map",
+    "main.cf0ac6e3.js.map": "/chatty-ai/static/js/main.cf0ac6e3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.692fa96c.css",
+    "static/js/main.cf0ac6e3.js"
+  ]
+}
