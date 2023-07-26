@@ -27,7 +27,7 @@ export const Nav = () => {
           <NavLink
             className={handleActiveLink}
             to='/favorites'>
-            Favorites
+            Favourites
           </NavLink>
         </li>
         <li>

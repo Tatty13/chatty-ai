@@ -1,17 +1,16 @@
 .nav__list {
-  margin: 16px 85px 32px 0;
   padding: 0;
-  max-width: 395px;
   height: 40px;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: baseline;
 }
 
 .nav__link {
+  display: flex;
   padding: 10px 16px;
   color: var(--color-text-primary);
-  font-weight: 500;
+  font-weight: var(--text-weight-s, 500);
   font-size: var(--text-size-s);
   line-height: var(--text-line-xs);
 }
@@ -19,11 +18,11 @@
 .nav__link_type_auth {
   margin-left: 16px;
   width: 127px;
-  display: flex;
+  box-sizing: border-box;
   align-content: center;
-  justify-content: center;
+  justify-content: flex-end;
   background: url(../../assets/icons/radix-icons_person.svg) no-repeat
-    var(--color-bg-brand) 20px / 16px;
+    var(--color-bg-brand) 16px / 20px;
   border-radius: 16px;
 }
 
