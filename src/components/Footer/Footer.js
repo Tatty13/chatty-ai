@@ -6,9 +6,12 @@ const Footer = () => {
 
   return (
     <footer className='footer'>
-      <p>Chatty AI &copy; {currentYear} All rights reserved. Terms of services and Privacy policy.</p>
+      <p>
+        Chatty AI &copy; {currentYear} All rights reserved. Terms of services
+        and Privacy policy.
+      </p>
     </footer>
   );
 };
 
-export default Footer;
+export { Footer };
