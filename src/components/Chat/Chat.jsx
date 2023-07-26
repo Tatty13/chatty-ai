@@ -27,7 +27,7 @@ const Chat = ({ isRecordStart, onMicBtnClick }) => {
   };
 
   const handleTextChange = (event) => {
-    setTextValue(event.target.value); // Обновляем состояние textValue при изменении текста в поле ввода
+    setTextValue(event.target.value.trimStart()); // Обновляем состояние textValue при изменении текста в поле ввода
     adjustTextareaHeight(); // Вызываем функцию для автоматического изменения высоты textarea
     if (!isReadyToGetAnswer && event.target.value.length > 1)
       setIsReadyToGetAnswer(true);
@@ -43,7 +43,6 @@ const Chat = ({ isRecordStart, onMicBtnClick }) => {
   };
 
   const handleSubmit = (evt) => {
-    console.log('SEND!');
     evt.preventDefault();
     setIsReadyToGetAnswer(false);
     setMessages((prev) => [...prev, createMessage(textValue, 'user')]);
@@ -51,7 +50,11 @@ const Chat = ({ isRecordStart, onMicBtnClick }) => {
   };
 
   const handleEnterKey = (evt) => {
-    if (evt.keyCode === 13 && evt.shiftKey === false) {
+    if (
+      evt.keyCode === 13 &&
+      evt.shiftKey === false &&
+      textValue.trimEnd().length > 1
+    ) {
       evt.preventDefault();
       evt.target.form.requestSubmit();
     }
