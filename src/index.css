@@ -1,5 +1,7 @@
 @import url(./vendor/normalize.css);
-@import url(./vendor/fonts.css);
+/* @import url(./vendor/fonts/fonts); */
 @import url('./assets/css/variables/theme-config.css');
 @import url('./assets/css/variables/text-config.css');
+@import url('./assets/css/common.css');
+
 

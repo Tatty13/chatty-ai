@@ -1,0 +1,156 @@
+.chat {
+	margin: 0;
+	padding: 0;
+	min-height: 613px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.chat__messages {
+	margin: 0;
+	padding: 0;
+	max-width: 724px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.chat__message {
+	margin: 0;
+	padding: 16px;
+	width: 483px;
+	background-color: var(--color-bg-cards);
+	border-radius: 16px;
+	display: flex;
+	justify-content: center;
+   align-items: center;
+	position: relative;
+}
+
+.message_user {
+	align-self: flex-end;
+	background-color: var(--color-bg-brand);
+}
+
+.message_bot {
+	align-self: flex-start;
+}
+
+.chat__message_bot-logo {
+	background-image: url(../../assets/icons/carbon_chat-bot.svg);
+	background-repeat: no-repeat;
+	min-width: 20px;
+	min-height: 20px;
+   background-size: 20px 20px;
+	position: absolute;
+	left: 16px;
+	top: 16px;
+}
+
+.chat__message_user-logo {
+	background-image: url(../../assets/icons/radix-icons_person.svg);
+	background-repeat: no-repeat;
+	min-width: 20px;
+	min-height: 20px;
+   background-size: 20px 20px;
+	position: absolute;
+	right: 16px;
+	top: 16px;
+}
+
+.chat__message_text {
+
+}
+
+.chat__input-container {
+	margin: 0;
+	padding: 0;
+	margin-top: 24px;
+	display: flex;
+	justify-content: center;
+	position: relative;
+}
+
+.chat__input {
+	position: relative;
+ }
+ 
+ .chat__text {
+	margin: 0;
+	padding: 0;
+	padding-left: 16px;
+	resize: none; 
+   overflow: auto;
+	width: 724px;
+   min-height: 40px;
+	max-height: 145px;
+	border: 1px solid var(--color-bg-brand);
+	background-color: var(--color-bg-secondary);
+	border-radius: 16px;
+	font-size: 14px;
+	line-height: 20px;
+	overflow-y: auto;
+ }
+ 
+ .chat__text::placeholder {
+	color: var(--color-text-primary); 
+	opacity: .5;
+	pointer-events: none;
+	line-height: 40px;
+ }
+
+.chat__buttons-block {
+	margin-left: 12px;
+	min-width: 40px;
+	min-height: 40px;
+}
+
+.chat__submit-btn {
+	background-image: url(../../assets/icons/microphone.svg);
+   background-repeat: no-repeat;
+	background-position: center;
+   background-size: 40px 40px;
+	width: 100%;
+	min-height: 40px;
+	border: none;
+   background-color: transparent;
+}
+
+.chat__language-select {
+	position: absolute;
+	cursor: pointer;
+	top: 10px;
+	right: 10px;
+ }
+ 
+ .chat__language-icon {
+	width: 20px;
+	height: 20px;
+ }
+ 
+ .chat__language-selector {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background-color: #fff;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+ }
+
+ .chat__language-selector.show {
+	display: block;
+ }
+
+ 
+ .chat__language-option {
+	cursor: pointer;
+	list-style-type: none;
+ }
+ 
+ .chat__language-selector.show {
+	display: block;
+ }
+ 

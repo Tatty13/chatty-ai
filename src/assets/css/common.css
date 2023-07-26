@@ -1,0 +1,21 @@
+.root {
+	margin: 0 auto;
+	background-color: var(--color-bg-primary);
+
+}
+
+.page {
+	margin: 0 auto;
+	max-width: 1280px;
+	width: 100%;
+	min-height: 100vh;
+	color: var(--color-text-primary);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Inter', Arial, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 22px;
+}
