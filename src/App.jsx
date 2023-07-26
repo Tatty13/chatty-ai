@@ -6,7 +6,7 @@ import Footer from './components/Footer/Footer';
 import Articles from './components/Articles/Articles';
 import Favorites from './components/Favorites/Favorites';
 import Login from './components/Login/Login';
-import './App.css';
+
 
 const App = () => {
   return (
