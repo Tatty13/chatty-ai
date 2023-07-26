@@ -1,48 +1,11 @@
 .header {
-	margin: 0;
-	padding: 0;
-	max-width: 1280px;
-	height: 88px;
-	display: flex;
-	justify-content: space-between;
-	align-content: center;
-	flex-shrink: 1;
-}
-
-.header__logo {
-	margin: 26px 0 42px 85px;
-	padding: 0;
-}
-
-.header__menu {
-	margin: 16px 85px 32px 0;
-	padding: 0;
-	max-width: 395px;
-	height: 40px;
-	display: flex;
-	justify-content: space-around;	
-}
-
-.header__link {
-	margin: 0;
-	padding: 10px 16px;
-	text-decoration: none;
-	color: var(--color-text-primary);
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 20px;
-}
-
-.header__link_auth {
-	margin-left: 16px;
-   width: 127px;
-	background-color: var(--color-bg-brand);
-	border-radius: 16px;
-	background-image: url(../../assets/icons/radix-icons_person.svg);
-	background-position: 16px;
-   background-repeat: no-repeat;
-   background-size: 20px 20px;
-	display: flex;
-	align-content: center;
-	justify-content: center;
+  margin: 0;
+  padding: 16px 85px 32px;
+  max-width: 1280px;
+  height: 88px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 1;
 }

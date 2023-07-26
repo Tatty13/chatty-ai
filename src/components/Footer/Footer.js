@@ -6,9 +6,9 @@ const Footer = () => {
 
   return (
     <footer className='footer'>
-      <p>
-        Chatty AI &copy; {currentYear} All rights reserved. Terms of services
-        and Privacy policy.
+      <p className='footer__copyright'>
+        Chatty AI&copy; {currentYear} All rights reserved. Terms of services
+        and Privacy policy
       </p>
     </footer>
   );

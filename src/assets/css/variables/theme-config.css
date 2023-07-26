@@ -4,7 +4,9 @@
   --color-bg-brand: var(--color-purple, #a1b5ff);
   --color-bg-primary: var(--color-beige, #eeebe7);
   --color-bg-secondary: var(--color-gray, #dcdbd9);
-  --color-bg-cards: var(--color-white, #f6f6f6);
+  --color-bg-tertiary: var(--color-white, #f6f6f6);
+  --color-bg-cards-bot: var(--color-white, #f6f6f6);
+  --color-bg-cards-user: var(--color-light-blue, #ebefff);
 
   --color-text-brand: var(--color-purple, #a1b5ff);
   --color-text-primary: var(--color-black, #1e1f1e);
