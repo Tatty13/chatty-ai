@@ -1,15 +1,11 @@
 .header {
   margin: 0;
-  padding: 0;
+  padding: 16px 85px 32px;
   max-width: 1280px;
   height: 88px;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  align-content: center;
+  align-items: center;
   flex-shrink: 1;
-}
-
-.header__logo {
-  margin: 26px 0 42px 85px;
-  padding: 0;
 }
