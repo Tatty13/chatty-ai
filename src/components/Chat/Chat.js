@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import languageIcon from "../../assets/icons/clarity_language-line.svg";
+import languageIcon from '../../assets/icons/clarity_language-line.svg';
 import './Chat.css'; // Подключите свои стили
 
 const UserMessageTemplate = () => (
@@ -17,7 +17,6 @@ const BotMessageTemplate = () => (
 );
 
 const Chat = () => {
-
   const [showLanguageSelector, setShowLanguageSelector] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Язык по умолчанию
   const [textValue, setTextValue] = useState('');
@@ -52,28 +51,47 @@ const Chat = () => {
       </div>
       <form className='chat__input-container'>
         <div className='chat__input'>
-        <textarea
+          <textarea
             ref={textareaRef}
             className='chat__text'
             placeholder='Send a message'
             value={textValue}
             onChange={handleTextChange} // Добавляем обработчик onChange для отслеживания изменений в поле ввода
           />
-          <div className='chat__language-select' onClick={toggleLanguageSelector}>
-            <img className='chat__language-icon' src={languageIcon} alt='Language Icon' />
-            <ul className={`chat__language-selector ${showLanguageSelector ? 'show' : ''}`}>
-              <li className='chat__language-option' onClick={() => handleLanguageSelect('en')}>English</li>
-              <li className='chat__language-option' onClick={() => handleLanguageSelect('ru')}>Russian</li>
+          <div
+            className='chat__language-select'
+            onClick={toggleLanguageSelector}>
+            <img
+              className='chat__language-icon'
+              src={languageIcon}
+              alt='Language Icon'
+            />
+            <ul
+              className={`chat__language-selector ${
+                showLanguageSelector ? 'show' : ''
+              }`}>
+              <li
+                className='chat__language-option'
+                onClick={() => handleLanguageSelect('en')}>
+                English
+              </li>
+              <li
+                className='chat__language-option'
+                onClick={() => handleLanguageSelect('ru')}>
+                Russian
+              </li>
             </ul>
           </div>
         </div>
         <div className='chat__buttons-block'>
-          <button type='submit' className='chat__submit-btn' value=''></button>
+          <button
+            type='submit'
+            className='chat__submit-btn'
+            value=''></button>
         </div>
       </form>
     </div>
   );
 };
 
-export default Chat;
-
+export { Chat };

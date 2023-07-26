@@ -1,13 +1,11 @@
 import React from 'react';
-import Chat from '../Chat/Chat'; 
+import { Chat } from '../../components';
 import './Main.css';
 
-const Main = () => {
+export const Main = () => {
   return (
     <main className='content'>
-      <Chat /> 
+      <Chat />
     </main>
   );
 };
-
-export default Main;
