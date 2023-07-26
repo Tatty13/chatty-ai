@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/chatty-ai/static/css/main.93179371.css",
-    "main.js": "/chatty-ai/static/js/main.9c0e25da.js",
+    "main.js": "/chatty-ai/static/js/main.2edf6a38.js",
     "static/media/Inter-Bold.woff?v=3.19": "/chatty-ai/static/media/Inter-Bold.93c1301bd9f486c573b3.woff",
     "static/media/Inter-SemiBold.woff?v=3.19": "/chatty-ai/static/media/Inter-SemiBold.cca62d21c8c555c392e5.woff",
     "static/media/Inter-Medium.woff?v=3.19": "/chatty-ai/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
@@ -19,10 +19,10 @@
     "index.html": "/chatty-ai/index.html",
     "static/media/send-btn.svg": "/chatty-ai/static/media/send-btn.da1f9f6d5666a6045b84.svg",
     "main.93179371.css.map": "/chatty-ai/static/css/main.93179371.css.map",
-    "main.9c0e25da.js.map": "/chatty-ai/static/js/main.9c0e25da.js.map"
+    "main.2edf6a38.js.map": "/chatty-ai/static/js/main.2edf6a38.js.map"
   },
   "entrypoints": [
     "static/css/main.93179371.css",
-    "static/js/main.9c0e25da.js"
+    "static/js/main.2edf6a38.js"
   ]
 }
