@@ -1,0 +1,29 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="20" height="20" fill="#CFCCCC"/>
+<g id="Main page / Chat">
+<path d="M-2391 -1241C-2391 -1242.1 -2390.1 -1243 -2389 -1243H10130C10131.1 -1243 10132 -1242.1 10132 -1241V217C10132 218.105 10131.1 219 10130 219H-2389C-2390.1 219 -2391 218.105 -2391 217V-1241Z" fill="white"/>
+<g id="Language / Dropdown list">
+<g id="Drop list / Language / Default" filter="url(#filter0_d_0_1)">
+<rect x="-173" y="-16" width="217" height="96" rx="4" fill="#F6F6F6" shape-rendering="crispEdges"/>
+<g id="Item / Dropdown list">
+<g id="iconamoon:check-light">
+<path id="Vector" d="M16.667 5.83337L8.33366 14.1667L4.16699 10" stroke="#A1B5FF" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</g>
+<path d="M-2389 -1242H10130V-1244H-2389V-1242ZM10131 -1241V217H10133V-1241H10131ZM10130 218H-2389V220H10130V218ZM-2390 217V-1241H-2392V217H-2390ZM-2389 218C-2389.55 218 -2390 217.552 -2390 217H-2392C-2392 218.657 -2390.66 220 -2389 220V218ZM10131 217C10131 217.552 10130.6 218 10130 218V220C10131.7 220 10133 218.657 10133 217H10131ZM10130 -1242C10130.6 -1242 10131 -1241.55 10131 -1241H10133C10133 -1242.66 10131.7 -1244 10130 -1244V-1242ZM-2389 -1244C-2390.66 -1244 -2392 -1242.66 -2392 -1241H-2390C-2390 -1241.55 -2389.55 -1242 -2389 -1242V-1244Z" fill="black" fill-opacity="0.1"/>
+</g>
+<defs>
+<filter id="filter0_d_0_1" x="-193" y="-32" width="257" height="136" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+</defs>
+</svg>
