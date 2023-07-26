@@ -1,0 +1,32 @@
+.nav__list {
+  margin: 16px 85px 32px 0;
+  padding: 0;
+  max-width: 395px;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav__link {
+  padding: 10px 16px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  font-size: var(--text-size-s);
+  line-height: var(--text-line-xs);
+}
+
+.nav__link_type_auth {
+  margin-left: 16px;
+  width: 127px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background: url(../../assets/icons/radix-icons_person.svg) no-repeat
+    var(--color-bg-brand) 20px / 16px;
+  border-radius: 16px;
+}
+
+.nav__link_active {
+  border-bottom: var(--border-brand);
+}
