@@ -1,13 +1,18 @@
 {
   "files": {
-    "main.css": "/chatty-ai/static/css/main.692fa96c.css",
-    "main.js": "/chatty-ai/static/js/main.cf0ac6e3.js",
+    "main.css": "/chatty-ai/static/css/main.bbade673.css",
+    "main.js": "/chatty-ai/static/js/main.c90412d7.js",
+    "static/media/logo.svg": "/chatty-ai/static/media/logo.3309ae3a103ae04c86b827adcc16b057.svg",
+    "static/media/carbon_chat-bot.svg": "/chatty-ai/static/media/carbon_chat-bot.9d7646b02103572920b3.svg",
+    "static/media/radix-icons_person.svg": "/chatty-ai/static/media/radix-icons_person.0303e7e780ebdc46f4ca.svg",
+    "static/media/clarity_language-line.svg": "/chatty-ai/static/media/clarity_language-line.2d0999aba451b673ab1a625db7d0ea96.svg",
+    "static/media/microphone.svg": "/chatty-ai/static/media/microphone.f3ee92357fb5a52ce925.svg",
     "index.html": "/chatty-ai/index.html",
-    "main.692fa96c.css.map": "/chatty-ai/static/css/main.692fa96c.css.map",
-    "main.cf0ac6e3.js.map": "/chatty-ai/static/js/main.cf0ac6e3.js.map"
+    "main.bbade673.css.map": "/chatty-ai/static/css/main.bbade673.css.map",
+    "main.c90412d7.js.map": "/chatty-ai/static/js/main.c90412d7.js.map"
   },
   "entrypoints": [
-    "static/css/main.692fa96c.css",
-    "static/js/main.cf0ac6e3.js"
+    "static/css/main.bbade673.css",
+    "static/js/main.c90412d7.js"
   ]
 }
