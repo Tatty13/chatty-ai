@@ -16,7 +16,7 @@ const BotMessageTemplate = () => (
   </div>
 );
 
-const Chat = () => {
+const Chat = ({ isRecordStart, onMicBtnClick }) => {
   const [showLanguageSelector, setShowLanguageSelector] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Язык по умолчанию
   const [textValue, setTextValue] = useState('');
@@ -85,9 +85,12 @@ const Chat = () => {
         </div>
         <div className='chat__buttons-block'>
           <button
-            type='submit'
-            className='chat__submit-btn'
-            value=''></button>
+            type='button'
+            className={`chat__mic-btn ${
+              isRecordStart && 'chat__mic-btn_active'
+            }`}
+            onClick={onMicBtnClick}
+          />
         </div>
       </form>
     </div>
