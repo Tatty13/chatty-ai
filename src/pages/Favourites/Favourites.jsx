@@ -7,8 +7,27 @@ import { sortOptions } from './sortOptions';
 
 export const Favourites = ({ savedMessages }) => {
   const [activeSortOptionIdx, setActiveSortOptionIdx] = useState(0);
+  const [isSortOptionsVisible, setIsSortOptionsVisible] = useState(false);
 
-  const handleMessagesSort = () => {};
+  const toggleSortOptionsVisibility = () => {
+    setIsSortOptionsVisible(!isSortOptionsVisible);
+  };
+
+  const handleMessagesSort = (idx) => {
+    setActiveSortOptionIdx(idx);
+    toggleSortOptionsVisibility();
+  };
+
+  const sortList = sortOptions.map((item, i) => (
+    <li
+      key={i}
+      className={`favorites__sort-item ${
+        activeSortOptionIdx === i ? 'favorites__sort-item_active' : ''
+      }`}
+      onClick={() => handleMessagesSort(i)}>
+      {item}
+    </li>
+  ));
 
   return (
     <section className='section favorites'>
@@ -16,19 +35,28 @@ export const Favourites = ({ savedMessages }) => {
         className='favorites__form'
         name='favorites'>
         <div className='favorites__sort-wrap'>
-          <p className='favorites__sort-text'>
-            Sort:
-            <span className='favorites__sort-accent'>
-              {' '}
-              {sortOptions[activeSortOptionIdx]}
-            </span>
-          </p>
-          <button
-            type='button'
-            aria-label='sort'
-            className='btn favorites__sort-btn'
-            onClick={handleMessagesSort}
-          />
+          <div
+            className='favorites__sort-control'
+            onClick={toggleSortOptionsVisibility}>
+            <p className='favorites__sort-text'>
+              Sort:
+              <span className='favorites__sort-accent'>
+                {' '}
+                {sortOptions[activeSortOptionIdx]}
+              </span>
+            </p>
+            <button
+              type='button'
+              aria-label='sort'
+              className='btn favorites__sort-btn'
+            />
+          </div>
+          <ul
+            className={`list favorites__sort-list ${
+              isSortOptionsVisible ? 'favorites__sort-list_visible' : ''
+            }`}>
+            {sortList}
+          </ul>
         </div>
         <div className='favorites__search-wrap'>
           <input
