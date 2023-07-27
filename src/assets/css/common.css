@@ -24,6 +24,15 @@
   -moz-text-size-adjust: 100%;
 }
 
+.content {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
 .link {
   text-decoration: none;
   cursor: pointer;
