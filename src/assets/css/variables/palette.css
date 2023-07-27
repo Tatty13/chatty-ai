@@ -6,9 +6,11 @@
   --color-red: #e74228;
   --color-purple: #a1b5ff;
   --color-light-blue: #ebefff;
+  --color-blue: #4f73fa;
 
   --color-black-rgba-0: rgb(30 31 30 / 0);
   --color-black-rgba-08: rgb(0 0 0 / 0.08);
+  --color-black-rgba-60: rgb(30 31 30 / 0.6);
   --color-black-rgba-74: rgb(0 0 0 / 0.74);
   --color-purple-rgba-20: rgb(161 181 255 / 0.2);
 }

@@ -7,7 +7,7 @@ export const Logo = () => {
   return (
     <Link
       to='/'
-      className='logo'>
+      className='link logo'>
       <img
         src={logo}
         alt='логотип сайта'

@@ -7,6 +7,7 @@
   --color-bg-tertiary: var(--color-white, #f6f6f6);
   --color-bg-cards-bot: var(--color-white, #f6f6f6);
   --color-bg-cards-user: var(--color-light-blue, #ebefff);
+  --color-bg-brand-hover: var(--color-blue, #4f73fa);
 
   --color-text-brand: var(--color-purple, #a1b5ff);
   --color-text-primary: var(--color-black, #1e1f1e);
@@ -29,4 +30,7 @@
 
   --box-shadow-black-08-primary: 0px 4px 20px 0px
     var(--color-black-rgba-08, rgb(0 0 0 / 0.08));
+
+  --filter-brand: invert(68%) sepia(5%) saturate(2896%) hue-rotate(192deg)
+    brightness(102%) contrast(105%);
 }
