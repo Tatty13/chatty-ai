@@ -39,6 +39,12 @@
 
 .chat__message:not(.chat__message__sender_poll) {
   box-shadow: var(--box-shadow-black-08-primary);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chat__message:not(.chat__message__sender_poll):hover {
+  background-color: var(--color-bg-brand);
 }
 
 .chat__message__sender_bot {
@@ -103,6 +109,12 @@
   background-color: var(--color-bg-secondary);
   border: var(--border-primary);
   border-radius: 16px;
+  transition: 0.3s;
+}
+
+.chat__input-wrap:hover {
+  background-color: var(--color-bg-tertiary);
+  border: var(--border-brand);
 }
 
 .chat__textarea {
@@ -135,11 +147,16 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.chat__language-icon:hover {
+  filter: var(--filter-brand);
 }
 
 .chat__language-list {
   position: absolute;
-  bottom: calc(100% + 14px);
+  bottom: calc(100% + 18px);
   right: 0;
   padding: 4px 16px;
   width: 185px;
@@ -160,10 +177,15 @@
 .chat__language-option {
   padding: 12px 8px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .chat__language-option:not(:last-child) {
   border-bottom: 1px solid var(--color-gray);
+}
+
+.chat__language-option:hover {
+  color: var(--color-text-brand);
 }
 
 .chat__language-option_active {
@@ -177,6 +199,14 @@
   height: 40px;
   border-radius: 50%;
   transition: 0.3s;
+}
+
+.chat__btn:hover {
+  background-color: var(--color-bg-cards-user);
+}
+
+.chat__btn:disabled {
+  background-color: var(--color-bg-secondary);
 }
 
 .chat__mic-btn {
