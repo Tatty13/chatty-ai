@@ -1,9 +1,13 @@
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 import { Header, Footer, Login } from './components';
-import { Articles, Favorites, Main } from './pages';
+import { Articles, Favourites, Main } from './pages';
+import { useState } from 'react';
+import { initialSavedMessages } from './utils';
 
 const App = () => {
+  const [savedMessages, setSavedMessages] = useState(initialSavedMessages);
+
   return (
     <div className='page'>
       <Header />
@@ -19,7 +23,7 @@ const App = () => {
           />
           <Route
             path='/favorites'
-            element={<Favorites />}
+            element={<Favourites savedMessages={savedMessages} />}
           />
           <Route
             path='/login'

@@ -33,6 +33,11 @@
   flex-grow: 1;
 }
 
+.section {
+  padding: 0 85px;
+  width: 100%;
+}
+
 .link {
   text-decoration: none;
   cursor: pointer;
