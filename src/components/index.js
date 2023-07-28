@@ -11,3 +11,7 @@ export * from './MessageList/MessageList';
 export * from './SavedMessagesList/SavedMessagesList';
 export * from './MicBtn/MicBtn';
 export * from './ChatSendBtn/ChatSendBtn';
+
+export * from './LangList/LangList';
+export * from './LangSelect/LangSelect';
+export * from './TextArea/TextArea';

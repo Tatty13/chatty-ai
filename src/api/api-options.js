@@ -1,6 +1,3 @@
-// import '../process';
-// require('dotenv').config();
-
 const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const gptApiOptions = {
@@ -21,8 +18,6 @@ const speechflowApiOptions = {
     getTranscription: 'Unfortunately, the audio was not converted to text.',
   },
   headers: {
-    // 'Content-Type': 'application/x-www-form-urlencoded',
-    'Content-Type': 'multipart/form-data',
     keyId: 'wQ0bNBT03X2jWDXH',
     keySecret: 'TJC16xMCCEqT1G4H',
   },
