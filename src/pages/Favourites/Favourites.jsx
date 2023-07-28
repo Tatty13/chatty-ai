@@ -62,7 +62,7 @@ export const Favourites = ({ savedMessages }) => {
           <input
             className='favorites__search-input'
             type='text'
-            placeholder='Search'
+            placeholder=''
           />
         </div>
         <button
