@@ -16,18 +16,22 @@ class SpeechflowApi extends Api {
     };
   }
 
-  getTranscription(audio) {
+  getTranscription(audioFile) {
     return super.request(
       '',
       {
-        method: '',
-        body: JSON.stringify(audio),
+        method: 'POST',
+        body: JSON.stringify({
+          file: "audio.mp3",
+          model: "whisper-1",
+        }),
         ...this._reqOpt,
       },
       'getTranscription'
     );
   }
 }
+
 
 const speechflowApi = new SpeechflowApi(speechflowApiOptions);
 

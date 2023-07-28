@@ -22,13 +22,36 @@ class GptApi extends Api {
    */
   getAnswer(question) {
     return super.request(
-      '',
+      '/chat/completions',
       {
-        method: '',
-        body: JSON.stringify(question),
+        method: 'POST',
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo-0613',
+          messages: question,
+          temperature: 0,
+          max_tokens: 500,
+          top_p: 1.0,
+          frequency_penalty: 0.0,
+          presence_penalty: 0.0,
+        }),
         ...this._reqOpt,
       },
       'getAnswer'
+    );
+  }
+
+  getTranscription(audioFile) {
+    return super.request(
+      '/audio/transcriptions',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          file: audioFile,
+          model: "whisper-1",
+        }),
+        ...this._reqOpt,
+      },
+      'getTranscription'
     );
   }
 }

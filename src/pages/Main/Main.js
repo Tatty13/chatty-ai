@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Chat } from '../../components';
+// import { gptApi } from '../../api/GptApi';
 import './Main.css';
 
 export const Main = () => {
   const [isRecordStart, setIsRecordStart] = useState(false);
   const [record, setRecord] = useState({});
   const [mediaRecorder, setMediaRecorder] = useState(null);
+  // const [trascription, setTranscription] = useState('');
 
   const saveVoice = (e) => {
     const audioChunk = [e.data];
@@ -43,6 +45,15 @@ export const Main = () => {
     }
   }
 
+  // const handleUserAudioStop = useCallback( async () => {
+  //   try {
+  //     const file = new File([record.raw], "audio.mp3");
+  //     console.log('file', file);
+  //   } catch (error) {
+  //     console.error("Ошибка при транскрибации аудио:", error);
+  //   }
+  // }, [record.raw]);
+
   function handleMicBtnClick() {
     isRecordStart ? stopRecordVoice() : startRecordVoice();
   }
@@ -51,15 +62,16 @@ export const Main = () => {
     requestMediaPermission();
   }, [requestMediaPermission]);
 
-  useEffect(() => {
-    record.url && console.log({ record });
-  }, [record]);
+  // useEffect(() => {
+  //   record.raw && handleUserAudioStop();
+  // }, [record.raw, handleUserAudioStop ]);
 
   return (
     <main className='content'>
       <Chat
         isRecordStart={isRecordStart}
         onMicBtnClick={handleMicBtnClick}
+        // trascription={trascription}
       />
     </main>
   );
