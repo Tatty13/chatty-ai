@@ -7,6 +7,7 @@ import { ChatSendBtn } from '../ChatSendBtn/ChatSendBtn';
 import { createMessage } from '../../utils/helpers/create-message';
 import { gptApi } from '../../api/GptApi';
 import { LangSelect } from '../LangSelect/LangSelect';
+import { TextArea } from '../TextArea/TextArea';
 
 const Chat = ({
   toggleLangListVisibility,
@@ -20,8 +21,6 @@ const Chat = ({
   const [textValue, setTextValue] = useState('');
   const [messages, setMessages] = useState(initialMessages);
   const [isReadyToGetAnswer, setIsReadyToGetAnswer] = useState(false);
-
-  const textareaRef = useRef(null);
 
   const handleUserMessageSubmit = async (userMessage) => {
     try {
@@ -38,39 +37,12 @@ const Chat = ({
     }
   };
 
-  const handleTextChange = (event) => {
-    setTextValue(event.target.value.trimStart()); // Обновляем состояние textValue при изменении текста в поле ввода
-    adjustTextareaHeight(); // Вызываем функцию для автоматического изменения высоты textarea
-    if (!isReadyToGetAnswer && event.target.value.length > 1)
-      setIsReadyToGetAnswer(true);
-    if (isReadyToGetAnswer && event.target.value.length < 2)
-      setIsReadyToGetAnswer(false);
-  };
-
-  const adjustTextareaHeight = () => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto'; // Сначала установим высоту textarea на "auto" для сброса размера
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Зададим высоту textarea на основе его содержимого
-    }
-  };
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setIsReadyToGetAnswer(false);
     setMessages((prev) => [...prev, createMessage(textValue, 'user')]);
     handleUserMessageSubmit(textValue);
     setTextValue('');
-  };
-
-  const handleEnterKey = (evt) => {
-    if (
-      evt.keyCode === 13 &&
-      evt.shiftKey === false &&
-      textValue.trimEnd().length > 1
-    ) {
-      evt.preventDefault();
-      evt.target.form.requestSubmit();
-    }
   };
 
   const messagesContainerRef = useRef(null);
@@ -103,15 +75,13 @@ const Chat = ({
         className='chat__from'
         onSubmit={handleSubmit}>
         <div className='chat__input-wrap'>
-          <textarea
-            ref={textareaRef}
-            className='chat__textarea'
-            placeholder='Send a message'
-            value={textValue}
-            rows={1}
-            onChange={handleTextChange}
-            onKeyDown={handleEnterKey}
+          <TextArea
+            isReadyToGetAnswe={isReadyToGetAnswer}
+            setIsReadyToGetAnswer={setIsReadyToGetAnswer}
+            textValue={textValue}
+            setTextValue={setTextValue}
           />
+
           <LangSelect
             onIconClick={toggleLangListVisibility}
             isLangListVisible={isLangListVisible}

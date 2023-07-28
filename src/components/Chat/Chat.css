@@ -120,28 +120,6 @@
   border: var(--border-brand);
 }
 
-.chat__textarea {
-  margin: 0;
-  padding: 0;
-  resize: none;
-  overflow: auto;
-  width: 621px;
-  min-height: 20px;
-  max-height: 125px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  line-height: 20px;
-  overflow-y: auto;
-}
-
-.chat__textarea::placeholder {
-  color: var(--color-text-primary);
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 .chat__btn {
   width: 40px;
   height: 40px;
