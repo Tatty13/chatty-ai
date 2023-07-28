@@ -1,6 +1,7 @@
 import './LangSelect.css';
+
 import languageIcon from '../../assets/icons/clarity_language-line.svg';
-import { LangList } from '../LangList/LangList';
+import { LangList } from '../';
 
 export const LangSelect = ({
   onIconClick,

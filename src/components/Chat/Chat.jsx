@@ -1,13 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
+
 import './Chat.css';
+
 import initialMessages from './initialMessages';
-import { ForwardedMessageList } from '../MessageList/MessageList';
-import { MicBtn } from '../MicBtn/MicBtn';
-import { ChatSendBtn } from '../ChatSendBtn/ChatSendBtn';
 import { createMessage } from '../../utils/helpers/create-message';
 import { gptApi } from '../../api/GptApi';
-import { LangSelect } from '../LangSelect/LangSelect';
-import { TextArea } from '../TextArea/TextArea';
+import {
+  ForwardedMessageList,
+  LangSelect,
+  TextArea,
+  MicBtn,
+  ChatSendBtn,
+} from '../';
 
 const Chat = ({
   toggleLangListVisibility,
