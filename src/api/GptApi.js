@@ -18,16 +18,20 @@ class GptApi extends Api {
 
   /**
    * @param {String} question
+   * @param {String} botRole - default value - 'You are a helpful assistant.'
    * @returns {Promise}
    */
-  getAnswer(question) {
+  getAnswer(question, botRole = 'You are a helpful assistant.') {
     return super.request(
       '/chat/completions',
       {
         method: 'POST',
         body: JSON.stringify({
           model: 'gpt-3.5-turbo-0613',
-          messages: question,
+          messages: [
+            { role: 'system', content: botRole },
+            { role: 'user', content: question },
+          ],
           temperature: 0,
           max_tokens: 500,
           top_p: 1.0,
@@ -37,21 +41,6 @@ class GptApi extends Api {
         ...this._reqOpt,
       },
       'getAnswer'
-    );
-  }
-
-  getTranscription(audioFile) {
-    return super.request(
-      '/audio/transcriptions',
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          file: audioFile,
-          model: "whisper-1",
-        }),
-        ...this._reqOpt,
-      },
-      'getTranscription'
     );
   }
 }

@@ -6,18 +6,8 @@ const initialMessages = [
   },
   {
     sender: 'bot',
-    content: 'So, for how many days do you want to prepare for the interview?',
+    content: 'So, what do you want to ask me?',
   },
-
-  {
-    sender: 'user',
-    content: 'User message here',
-  },
-
-  // {
-  //   sender: 'poll',
-  //   content: 'User choice',
-  // },
 ];
 
 export default initialMessages;

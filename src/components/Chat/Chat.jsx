@@ -3,8 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Chat.css';
 
 import initialMessages from './initialMessages';
-import { createMessage } from '../../utils/helpers/create-message';
-import { gptApi } from '../../api/GptApi';
+import { createMessage, getGptBotReply } from '../../utils';
 import {
   ForwardedMessageList,
   LangSelect,
@@ -28,13 +27,7 @@ const Chat = ({
 
   const handleUserMessageSubmit = async (userMessage) => {
     try {
-      const botReply = await gptApi.getAnswer([
-        { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: userMessage },
-      ]);
-
-      const botMessage = botReply.choices[0].message.content;
-
+      const botMessage = await getGptBotReply(userMessage);
       setMessages((prev) => [...prev, createMessage(botMessage, 'bot')]);
     } catch (error) {
       console.error('Error sending message to ChatGPT:', error);
