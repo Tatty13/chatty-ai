@@ -1,3 +1,3 @@
 export * from './Main/Main';
-export * from './Favorites/Favorites';
+export * from './Favourites/Favourites';
 export * from './Articles/Articles';
