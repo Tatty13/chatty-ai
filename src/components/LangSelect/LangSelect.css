@@ -1,0 +1,54 @@
+.chat__language-select {
+  position: relative;
+}
+
+.chat__language-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chat__language-icon:hover {
+  filter: var(--filter-brand);
+}
+
+.chat__language-list {
+  position: absolute;
+  bottom: calc(100% + 18px);
+  right: 0;
+  padding: 4px 16px;
+  width: 185px;
+  box-sizing: border-box;
+  display: none;
+  flex-direction: column;
+  background: var(--color-bg-tertiary);
+  box-shadow: var(--box-shadow-black-08-primary);
+  border-radius: 4px;
+  font-size: var(--text-size-s, 14px);
+  line-height: var(--text-line-xs, 20px);
+}
+
+.chat__language-list.show {
+  display: flex;
+}
+
+.chat__language-option {
+  padding: 12px 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.chat__language-option:not(:last-child) {
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.chat__language-option:hover {
+  color: var(--color-text-brand);
+}
+
+.chat__language-option_active {
+  color: var(--color-text-brand);
+  background: url('../../assets/icons/check-icon.svg') no-repeat right 8px top
+    12px;
+}

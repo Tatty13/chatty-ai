@@ -2,12 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Chat.css';
 import initialMessages from './initialMessages';
 import { ForwardedMessageList } from '../MessageList/MessageList';
-import languageIcon from '../../assets/icons/clarity_language-line.svg';
-import { languageList } from './language-list';
 import { MicBtn } from '../MicBtn/MicBtn';
 import { ChatSendBtn } from '../ChatSendBtn/ChatSendBtn';
 import { createMessage } from '../../utils/helpers/create-message';
 import { gptApi } from '../../api/GptApi';
+import { LangSelect } from '../LangSelect/LangSelect';
 
 const Chat = ({
   toggleLangListVisibility,
@@ -94,17 +93,6 @@ const Chat = ({
     scrollToBottom();
   }, [messages]);
 
-  const langListElems = languageList.map((item, i) => (
-    <li
-      key={i}
-      className={`chat__language-option ${
-        item.code === selectedLanguage ? 'chat__language-option_active' : ''
-      }`}
-      onClick={() => handleLanguageSelect(item.code)}>
-      {item.lang}
-    </li>
-  ));
-
   return (
     <section className='chat'>
       <ForwardedMessageList
@@ -124,20 +112,12 @@ const Chat = ({
             onChange={handleTextChange}
             onKeyDown={handleEnterKey}
           />
-          <div className='chat__language-select'>
-            <img
-              className='chat__language-icon'
-              src={languageIcon}
-              alt='Language Icon'
-              onClick={toggleLangListVisibility}
-            />
-            <ul
-              className={`list chat__language-list ${
-                isLangListVisible ? 'show' : ''
-              }`}>
-              {langListElems}
-            </ul>
-          </div>
+          <LangSelect
+            onIconClick={toggleLangListVisibility}
+            isLangListVisible={isLangListVisible}
+            selectedLanguage={selectedLanguage}
+            handleLanguageSelect={handleLanguageSelect}
+          />
         </div>
         {isReadyToGetAnswer ? (
           <ChatSendBtn />
