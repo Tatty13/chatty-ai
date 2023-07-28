@@ -1,7 +1,7 @@
 // import '../process';
 // require('dotenv').config();
 
-const apiKey = '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';
+const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const gptApiOptions = {
   baseURL: 'https://api.openai.com/v1',
