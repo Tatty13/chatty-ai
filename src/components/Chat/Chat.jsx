@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Chat.css';
 import initialMessages from './initialMessages';
-import { ForwardedMessageList, MessageList } from '../MessageList/MessageList';
+import { ForwardedMessageList } from '../MessageList/MessageList';
 import languageIcon from '../../assets/icons/clarity_language-line.svg';
 import { languageList } from './language-list';
 import { MicBtn } from '../MicBtn/MicBtn';
@@ -9,9 +9,15 @@ import { ChatSendBtn } from '../ChatSendBtn/ChatSendBtn';
 import { createMessage } from '../../utils/helpers/create-message';
 import { gptApi } from '../../api/GptApi';
 
-const Chat = ({ isRecordStart, onMicBtnClick, transcription }) => {
-  const [showLanguageSelector, setShowLanguageSelector] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('en'); // Язык по умолчанию
+const Chat = ({
+  toggleLangListVisibility,
+  selectedLanguage,
+  handleLanguageSelect,
+  isLangListVisible,
+  isRecordStart,
+  onMicBtnClick,
+  transcription,
+}) => {
   const [textValue, setTextValue] = useState('');
   const [messages, setMessages] = useState(initialMessages);
   const [isReadyToGetAnswer, setIsReadyToGetAnswer] = useState(false);
@@ -31,15 +37,6 @@ const Chat = ({ isRecordStart, onMicBtnClick, transcription }) => {
     } catch (error) {
       console.error('Error sending message to ChatGPT:', error);
     }
-  };
-
-  const toggleLanguageSelector = () => {
-    setShowLanguageSelector((prevShow) => !prevShow);
-  };
-
-  const handleLanguageSelect = (language) => {
-    setSelectedLanguage(language);
-    toggleLanguageSelector();
   };
 
   const handleTextChange = (event) => {
@@ -97,6 +94,17 @@ const Chat = ({ isRecordStart, onMicBtnClick, transcription }) => {
     scrollToBottom();
   }, [messages]);
 
+  const langListElems = languageList.map((item, i) => (
+    <li
+      key={i}
+      className={`chat__language-option ${
+        item.code === selectedLanguage ? 'chat__language-option_active' : ''
+      }`}
+      onClick={() => handleLanguageSelect(item.code)}>
+      {item.lang}
+    </li>
+  ));
+
   return (
     <section className='chat'>
       <ForwardedMessageList
@@ -113,7 +121,7 @@ const Chat = ({ isRecordStart, onMicBtnClick, transcription }) => {
             placeholder='Send a message'
             value={textValue}
             rows={1}
-            onChange={handleTextChange} // Добавляем обработчик onChange для отслеживания изменений в поле ввода
+            onChange={handleTextChange}
             onKeyDown={handleEnterKey}
           />
           <div className='chat__language-select'>
@@ -121,24 +129,13 @@ const Chat = ({ isRecordStart, onMicBtnClick, transcription }) => {
               className='chat__language-icon'
               src={languageIcon}
               alt='Language Icon'
-              onClick={toggleLanguageSelector}
+              onClick={toggleLangListVisibility}
             />
             <ul
               className={`list chat__language-list ${
-                showLanguageSelector ? 'show' : ''
+                isLangListVisible ? 'show' : ''
               }`}>
-              {languageList.map((item, i) => (
-                <li
-                  key={i}
-                  className={`chat__language-option ${
-                    item.code === selectedLanguage
-                      ? 'chat__language-option_active'
-                      : ''
-                  }`}
-                  onClick={() => handleLanguageSelect(item.code)}>
-                  {item.lang}
-                </li>
-              ))}
+              {langListElems}
             </ul>
           </div>
         </div>

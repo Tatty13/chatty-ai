@@ -6,10 +6,22 @@ import './Main.css';
 import { speechflowApi } from '../../api/SpeechflowApi';
 
 export const Main = () => {
+  const [isLangListVisible, setIsLangListVisible] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('en'); // Язык по умолчанию
+
   const [isRecordStart, setIsRecordStart] = useState(false);
   const [record, setRecord] = useState({});
   const [recorder, setRecorder] = useState(null);
   const [transcription, setTranscription] = useState('');
+
+  const toggleLangListVisibility = () => {
+    setIsLangListVisible((prevShow) => !prevShow);
+  };
+
+  const handleLanguageSelect = (language) => {
+    setSelectedLanguage(language);
+    toggleLangListVisibility();
+  };
 
   async function startRecordVoice() {
     if (recorder) {
@@ -44,29 +56,32 @@ export const Main = () => {
     }
   }
 
-  async function sendVoiceToSpeechflow(record) {
-    try {
-      const formData = new FormData();
-      formData.append('file', record.raw, 'voice.mp3');
+  const sendVoiceToSpeechflow = useCallback(
+    async (record) => {
+      try {
+        const formData = new FormData();
+        formData.append('file', record.raw, 'voice.mp3');
 
-      const data = await speechflowApi.sendVoice(formData);
+        const data = await speechflowApi.sendVoice(formData, selectedLanguage);
 
-      if (data?.taskId) {
-        let res;
-        res = await speechflowApi.getTranscription(data.taskId);
-        while (res.code === 11001) {
+        if (data?.taskId) {
+          let res;
           res = await speechflowApi.getTranscription(data.taskId);
-        }
-        setRecord({});
+          while (res.code === 11001) {
+            res = await speechflowApi.getTranscription(data.taskId);
+          }
+          setRecord({});
 
-        if (res.code === 11000) {
-          setTranscription(res.result.trim());
+          if (res.code === 11000) {
+            setTranscription(res.result.trim());
+          }
         }
+      } catch (err) {
+        console.log('err', err);
       }
-    } catch (err) {
-      console.log('err', err);
-    }
-  }
+    },
+    [selectedLanguage]
+  );
 
   function handleMicBtnClick() {
     isRecordStart ? stopRecordVoice() : startRecordVoice();
@@ -83,11 +98,15 @@ export const Main = () => {
     if (record.url) {
       sendVoiceToSpeechflow(record);
     }
-  }, [record]);
+  }, [record, sendVoiceToSpeechflow]);
 
   return (
     <main className='content'>
       <Chat
+        toggleLangListVisibility={toggleLangListVisibility}
+        selectedLanguage={selectedLanguage}
+        handleLanguageSelect={handleLanguageSelect}
+        isLangListVisible={isLangListVisible}
         isRecordStart={isRecordStart}
         onMicBtnClick={handleMicBtnClick}
         transcription={transcription}
