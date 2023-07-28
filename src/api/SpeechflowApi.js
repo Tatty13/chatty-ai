@@ -20,9 +20,8 @@ class SpeechflowApi extends Api {
     return super.request(
       `/create?lang=${lang}`,
       {
-        // mode: 'no-cors',
         method: 'POST',
-        file: file,
+        body: file,
         ...this._reqOpt,
       },
       'getTranscription'
@@ -31,7 +30,7 @@ class SpeechflowApi extends Api {
 
   getTranscription(taskId) {
     return super.request(
-      `/query?taskId=${taskId}`,
+      `/query?taskId=${taskId}&resultType=4`,
       {
         method: 'GET',
         ...this._reqOpt,

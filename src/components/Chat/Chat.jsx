@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './Chat.css'; 
+import './Chat.css';
 import initialMessages from './initialMessages';
 import { ForwardedMessageList, MessageList } from '../MessageList/MessageList';
 import languageIcon from '../../assets/icons/clarity_language-line.svg';
@@ -9,42 +9,27 @@ import { ChatSendBtn } from '../ChatSendBtn/ChatSendBtn';
 import { createMessage } from '../../utils/helpers/create-message';
 import { gptApi } from '../../api/GptApi';
 
-
-
 const Chat = ({ isRecordStart, onMicBtnClick, transcription }) => {
   const [showLanguageSelector, setShowLanguageSelector] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Язык по умолчанию
   const [textValue, setTextValue] = useState('');
   const [messages, setMessages] = useState(initialMessages);
   const [isReadyToGetAnswer, setIsReadyToGetAnswer] = useState(false);
-  // const [audioFile, setAudioFile] = useState(null);
 
   const textareaRef = useRef(null);
-
-  // const handleUserAudioSubmit = async () => {
-  //   try {
-  //     const botReply = await gptApi.getTranscription(audioFile);
-  //     console.log('botReply', botReply)
-  //     const botMessage = botReply.choices[0].message.content;
-  //     setMessages((prev) => [...prev, createMessage(botMessage, "bot")]);
-  //   } catch (error) {
-  //     console.error("Ошибка при транскрибации аудио:", error);
-  //   }
-  // };
 
   const handleUserMessageSubmit = async (userMessage) => {
     try {
       const botReply = await gptApi.getAnswer([
-        { role: "system", content: "You are a helpful assistant." },
-        { role: "user", content: userMessage },
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: userMessage },
       ]);
 
       const botMessage = botReply.choices[0].message.content;
-     
 
-      setMessages((prev) => [...prev, createMessage(botMessage, "bot")]);
+      setMessages((prev) => [...prev, createMessage(botMessage, 'bot')]);
     } catch (error) {
-      console.error("Error sending message to ChatGPT:", error);
+      console.error('Error sending message to ChatGPT:', error);
     }
   };
 
@@ -73,18 +58,6 @@ const Chat = ({ isRecordStart, onMicBtnClick, transcription }) => {
     }
   };
 
-  // const handleSubmit = (evt) => {
-  //   evt.preventDefault();
-  //   setIsReadyToGetAnswer(false);
-  //   setMessages((prev) => [...prev, createMessage(textValue, 'user')]);
-  //   if (audioFile) {
-  //     handleUserAudioSubmit(); // Вызываем функцию для транскрипции аудио, если файл был выбран
-  //     setAudioFile(null); // Сбрасываем состояние файла после транскрипции
-  //   } else {
-  //     handleUserMessageSubmit(textValue);
-  //   }
-  //   setTextValue('');
-  // };
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setIsReadyToGetAnswer(false);
@@ -114,8 +87,11 @@ const Chat = ({ isRecordStart, onMicBtnClick, transcription }) => {
   };
 
   useEffect(() => {
-    setTextValue(transcription);
-  },[transcription]);
+    if (transcription) {
+      setTextValue(transcription);
+      transcription.length > 1 && setIsReadyToGetAnswer(true);
+    }
+  }, [transcription]);
 
   useEffect(() => {
     scrollToBottom();
