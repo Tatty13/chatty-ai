@@ -16,22 +16,30 @@ class SpeechflowApi extends Api {
     };
   }
 
-  getTranscription(audioFile) {
+  sendVoice(file, lang = 'en') {
     return super.request(
-      '',
+      `/create?lang=${lang}`,
       {
+        // mode: 'no-cors',
         method: 'POST',
-        body: JSON.stringify({
-          file: "audio.mp3",
-          model: "whisper-1",
-        }),
+        file: file,
+        ...this._reqOpt,
+      },
+      'getTranscription'
+    );
+  }
+
+  getTranscription(taskId) {
+    return super.request(
+      `/query?taskId=${taskId}`,
+      {
+        method: 'GET',
         ...this._reqOpt,
       },
       'getTranscription'
     );
   }
 }
-
 
 const speechflowApi = new SpeechflowApi(speechflowApiOptions);
 
