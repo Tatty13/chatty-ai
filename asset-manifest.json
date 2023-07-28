@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/chatty-ai/static/css/main.93179371.css",
-    "main.js": "/chatty-ai/static/js/main.2edf6a38.js",
+    "main.css": "/chatty-ai/static/css/main.062d2440.css",
+    "main.js": "/chatty-ai/static/js/main.4682563e.js",
     "static/media/Inter-Bold.woff?v=3.19": "/chatty-ai/static/media/Inter-Bold.93c1301bd9f486c573b3.woff",
     "static/media/Inter-SemiBold.woff?v=3.19": "/chatty-ai/static/media/Inter-SemiBold.cca62d21c8c555c392e5.woff",
     "static/media/Inter-Medium.woff?v=3.19": "/chatty-ai/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
@@ -15,14 +15,17 @@
     "static/media/check-icon.svg": "/chatty-ai/static/media/check-icon.ddb7f50c455d71576cfd.svg",
     "static/media/radix-icons_person.svg": "/chatty-ai/static/media/radix-icons_person.0303e7e780ebdc46f4ca.svg",
     "static/media/clarity_language-line.svg": "/chatty-ai/static/media/clarity_language-line.2d0999aba451b673ab1a625db7d0ea96.svg",
+    "static/media/star-icon.svg": "/chatty-ai/static/media/star-icon.c92f6c9d8b604b1db174.svg",
     "static/media/microphone.svg": "/chatty-ai/static/media/microphone.8662c3082eb0df62b93e.svg",
     "index.html": "/chatty-ai/index.html",
+    "static/media/search-icon.svg": "/chatty-ai/static/media/search-icon.69b77a4546ef131c2d2a712d30931b80.svg",
     "static/media/send-btn.svg": "/chatty-ai/static/media/send-btn.da1f9f6d5666a6045b84.svg",
-    "main.93179371.css.map": "/chatty-ai/static/css/main.93179371.css.map",
-    "main.2edf6a38.js.map": "/chatty-ai/static/js/main.2edf6a38.js.map"
+    "static/media/arrow-up-2-thin.svg": "/chatty-ai/static/media/arrow-up-2-thin.20dc2bc98000e3ed52a3.svg",
+    "main.062d2440.css.map": "/chatty-ai/static/css/main.062d2440.css.map",
+    "main.4682563e.js.map": "/chatty-ai/static/js/main.4682563e.js.map"
   },
   "entrypoints": [
-    "static/css/main.93179371.css",
-    "static/js/main.2edf6a38.js"
+    "static/css/main.062d2440.css",
+    "static/js/main.4682563e.js"
   ]
 }
