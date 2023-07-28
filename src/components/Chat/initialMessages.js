@@ -14,10 +14,10 @@ const initialMessages = [
     content: 'User message here',
   },
 
-  {
-    sender: 'poll',
-    content: 'User choice',
-  },
+  // {
+  //   sender: 'poll',
+  //   content: 'User choice',
+  // },
 ];
 
 export default initialMessages;
