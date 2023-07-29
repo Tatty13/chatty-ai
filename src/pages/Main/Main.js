@@ -1,23 +1,36 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import MicRecorder from 'mic-recorder-to-mp3';
 
-import { Chat } from '../../components';
 import './Main.css';
+import {
+  ChatSendBtn,
+  ForwardedMessageList,
+  LangSelect,
+  MicBtn,
+  TextArea,
+} from '../../components';
 import { speechflowApi } from '../../api/SpeechflowApi';
+import { createMessage, getGptBotReply } from '../../utils';
 
 export const Main = ({
   onSaveBtnClick,
   savedMessages,
   messages,
   handleMessageAdd,
+  textValue,
+  setTextValue,
 }) => {
   const [isLangListVisible, setIsLangListVisible] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Язык по умолчанию
+  const [textRows, setTextRows] = useState(2);
+  const [isReadyToGetAnswer, setIsReadyToGetAnswer] = useState(false);
 
   const [isRecordStart, setIsRecordStart] = useState(false);
   const [record, setRecord] = useState({});
   const [recorder, setRecorder] = useState(null);
   const [transcription, setTranscription] = useState('');
+
+  const messagesContainerRef = useRef(null);
 
   const toggleLangListVisibility = () => {
     setIsLangListVisible((prevShow) => !prevShow);
@@ -92,12 +105,45 @@ export const Main = ({
     isRecordStart ? stopRecordVoice() : startRecordVoice();
   }
 
+  const handleUserMessageSubmit = async (userMessage) => {
+    try {
+      const botMessage = await getGptBotReply(userMessage);
+      handleMessageAdd(createMessage(botMessage, 'bot'));
+    } catch (error) {
+      console.error('Error sending message to ChatGPT:', error);
+    }
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    setIsReadyToGetAnswer(false);
+    handleMessageAdd(createMessage(textValue, 'user'));
+    handleUserMessageSubmit(textValue);
+    setTextValue('');
+    setTextRows(1);
+  };
+
+  const scrollToBottom = () => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
+    }
+  };
+
   useEffect(() => {
-    const recorder = new MicRecorder({
-      bitRate: 128,
-    });
-    setRecorder(recorder);
-  }, []);
+    if (transcription) {
+      setTextValue(transcription);
+      transcription.length > 1 && setIsReadyToGetAnswer(true);
+    }
+  }, [transcription]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    setIsReadyToGetAnswer(textValue.length > 1);
+  }, [textValue]);
 
   useEffect(() => {
     if (record.url) {
@@ -105,19 +151,49 @@ export const Main = ({
     }
   }, [record, sendVoiceToSpeechflow]);
 
+  useEffect(() => {
+    const recorder = new MicRecorder({
+      bitRate: 128,
+    });
+    setRecorder(recorder);
+  }, []);
+
   return (
-    <Chat
-      onSaveBtnClick={onSaveBtnClick}
-      savedMessages={savedMessages}
-      messages={messages}
-      handleMessageAdd={handleMessageAdd}
-      toggleLangListVisibility={toggleLangListVisibility}
-      selectedLanguage={selectedLanguage}
-      handleLanguageSelect={handleLanguageSelect}
-      isLangListVisible={isLangListVisible}
-      isRecordStart={isRecordStart}
-      onMicBtnClick={handleMicBtnClick}
-      transcription={transcription}
-    />
+    <section className='chat'>
+      <ForwardedMessageList
+        messages={messages}
+        savedMessages={savedMessages}
+        onSaveBtnClick={onSaveBtnClick}
+        ref={messagesContainerRef}
+      />
+      <form
+        className='chat__from'
+        onSubmit={handleSubmit}>
+        <div className='chat__input-wrap'>
+          <TextArea
+            isReadyToGetAnswe={isReadyToGetAnswer}
+            setIsReadyToGetAnswer={setIsReadyToGetAnswer}
+            textValue={textValue}
+            setTextValue={setTextValue}
+            textRows={textRows}
+          />
+
+          <LangSelect
+            onIconClick={toggleLangListVisibility}
+            isLangListVisible={isLangListVisible}
+            selectedLanguage={selectedLanguage}
+            handleLanguageSelect={handleLanguageSelect}
+          />
+        </div>
+        {isReadyToGetAnswer ? (
+          <ChatSendBtn />
+        ) : (
+          <MicBtn
+            isRecordStart={isRecordStart}
+            onClick={handleMicBtnClick}
+          />
+        )}
+      </form>
+    </section>
   );
 };
