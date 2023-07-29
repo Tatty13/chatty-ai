@@ -1,12 +1,41 @@
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import { Header, Footer, Login } from './components';
 import { Articles, Favourites, Main } from './pages';
-import { useState } from 'react';
-import { initialSavedMessages } from './utils';
+import { getDate, initialMessages } from './utils';
 
 const App = () => {
-  const [savedMessages, setSavedMessages] = useState(initialSavedMessages);
+  const [savedMessages, setSavedMessages] = useState([]);
+  const [messages, setMessages] = useState(initialMessages);
+
+  /**
+   * @param {object} message
+   * @param {'bot' | 'user' | 'poll'} message.sender
+   * @param {String} message.content
+   */
+  function saveMessage({ sender, content }) {
+    const date = getDate();
+    setSavedMessages((prev) => [...prev, { sender, content, date }]);
+  }
+
+  function removeMessageFromSaved({ sender, content }) {
+    setSavedMessages((prev) =>
+      prev.filter((msg) => msg.content !== content || msg.sender !== sender)
+    );
+  }
+
+  function handleSaveMsgBtnClick(isSaved, message) {
+    isSaved ? removeMessageFromSaved(message) : saveMessage(message);
+  }
+
+  function handleMessageAdd(message) {
+    setMessages((prev) => [...prev, message]);
+  }
+
+  useEffect(() => {
+    localStorage.setItem('savedMessages', JSON.stringify(savedMessages));
+  }, [savedMessages]);
 
   return (
     <div className='page'>
@@ -15,7 +44,14 @@ const App = () => {
         <Routes>
           <Route
             path='/'
-            element={<Main />}
+            element={
+              <Main
+                onSaveBtnClick={handleSaveMsgBtnClick}
+                savedMessages={savedMessages}
+                messages={messages}
+                handleMessageAdd={handleMessageAdd}
+              />
+            }
           />
           <Route
             path='/articles'
@@ -23,7 +59,12 @@ const App = () => {
           />
           <Route
             path='/favorites'
-            element={<Favourites savedMessages={savedMessages} />}
+            element={
+              <Favourites
+                savedMessages={savedMessages}
+                onStarClick={removeMessageFromSaved}
+              />
+            }
           />
           <Route
             path='/login'

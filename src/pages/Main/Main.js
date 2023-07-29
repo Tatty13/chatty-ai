@@ -5,7 +5,12 @@ import { Chat } from '../../components';
 import './Main.css';
 import { speechflowApi } from '../../api/SpeechflowApi';
 
-export const Main = () => {
+export const Main = ({
+  onSaveBtnClick,
+  savedMessages,
+  messages,
+  handleMessageAdd,
+}) => {
   const [isLangListVisible, setIsLangListVisible] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Язык по умолчанию
 
@@ -73,7 +78,7 @@ export const Main = () => {
           setRecord({});
 
           if (res.code === 11000) {
-            setTranscription(res.result.trim());
+            setTranscription(res.result.trim().replace(/\s+/g, ' '));
           }
         }
       } catch (err) {
@@ -101,16 +106,18 @@ export const Main = () => {
   }, [record, sendVoiceToSpeechflow]);
 
   return (
-    <main className='content'>
-      <Chat
-        toggleLangListVisibility={toggleLangListVisibility}
-        selectedLanguage={selectedLanguage}
-        handleLanguageSelect={handleLanguageSelect}
-        isLangListVisible={isLangListVisible}
-        isRecordStart={isRecordStart}
-        onMicBtnClick={handleMicBtnClick}
-        transcription={transcription}
-      />
-    </main>
+    <Chat
+      onSaveBtnClick={onSaveBtnClick}
+      savedMessages={savedMessages}
+      messages={messages}
+      handleMessageAdd={handleMessageAdd}
+      toggleLangListVisibility={toggleLangListVisibility}
+      selectedLanguage={selectedLanguage}
+      handleLanguageSelect={handleLanguageSelect}
+      isLangListVisible={isLangListVisible}
+      isRecordStart={isRecordStart}
+      onMicBtnClick={handleMicBtnClick}
+      transcription={transcription}
+    />
   );
 };

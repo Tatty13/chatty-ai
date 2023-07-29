@@ -5,7 +5,7 @@ import { SavedMessagesList } from '../../components';
 import { useState } from 'react';
 import { sortOptions } from './sortOptions';
 
-export const Favourites = ({ savedMessages }) => {
+export const Favourites = ({ savedMessages, onStarClick }) => {
   const [activeSortOptionIdx, setActiveSortOptionIdx] = useState(0);
   const [isSortOptionsVisible, setIsSortOptionsVisible] = useState(false);
 
@@ -75,7 +75,10 @@ export const Favourites = ({ savedMessages }) => {
           />
         </button>
       </form>
-      <SavedMessagesList savedMessages={savedMessages} />
+      <SavedMessagesList
+        savedMessages={savedMessages}
+        onStarClick={onStarClick}
+      />
     </section>
   );
 };
