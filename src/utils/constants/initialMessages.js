@@ -6,8 +6,8 @@ const initialMessages = [
   },
   {
     sender: 'bot',
-    content: 'So, what do you want to ask me?',
+    content: 'So, what can I do for you?',
   },
 ];
 
-export default initialMessages;
+export { initialMessages };

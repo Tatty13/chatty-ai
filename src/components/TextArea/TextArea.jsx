@@ -7,6 +7,7 @@ export const TextArea = ({
   setIsReadyToGetAnswer,
   textValue,
   setTextValue,
+  textRows,
 }) => {
   const textareaRef = useRef(null);
 
@@ -43,7 +44,7 @@ export const TextArea = ({
       className='chat__textarea'
       placeholder='Send a message'
       value={textValue}
-      rows={1}
+      rows={textRows}
       onChange={handleTextChange}
       onKeyDown={handleEnterKey}
     />

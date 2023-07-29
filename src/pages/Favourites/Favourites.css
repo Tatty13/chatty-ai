@@ -159,6 +159,16 @@
   overflow: hidden;
 }
 
+.favorites__no-messages {
+  margin-top: 140px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: var(--text-size-xl, 24px);
+  line-height: var(--text-line-xxl, 30px);
+  font-weight: var(--text-weight-xs, 400);
+  opacity: 0.4;
+}
+
 /* shadow top */
 /* .favorites__messages-wrap::before {
   content: '';

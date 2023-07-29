@@ -36,6 +36,7 @@
 .section {
   padding: 0 85px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .link {
