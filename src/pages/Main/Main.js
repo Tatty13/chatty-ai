@@ -135,7 +135,7 @@ export const Main = ({
       setTextValue(transcription);
       transcription.length > 1 && setIsReadyToGetAnswer(true);
     }
-  }, [transcription]);
+  }, [transcription, setTextValue]);
 
   useEffect(() => {
     scrollToBottom();
