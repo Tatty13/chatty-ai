@@ -17,13 +17,11 @@ export const Main = ({
   savedMessages,
   messages,
   handleMessageAdd,
+  textValue,
+  setTextValue,
 }) => {
   const [isLangListVisible, setIsLangListVisible] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en'); // Язык по умолчанию
-
-  const [textValue, setTextValue] = useState(
-    `Hi, I have job interview soon. I am a  junior UX/UI designer. Can you be an employeer and im an employee, ask me one question at ones`
-  );
   const [textRows, setTextRows] = useState(2);
   const [isReadyToGetAnswer, setIsReadyToGetAnswer] = useState(false);
 

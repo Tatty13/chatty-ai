@@ -8,6 +8,9 @@ import { getDate, initialMessages } from './utils';
 const App = () => {
   const [savedMessages, setSavedMessages] = useState([]);
   const [messages, setMessages] = useState(initialMessages);
+  const [textValue, setTextValue] = useState(
+    `Hi, I have job interview soon. I am a  junior UX/UI designer. Can you be an employeer and im an employee, ask me one question at ones`
+  );
 
   /**
    * @param {object} message
@@ -50,6 +53,8 @@ const App = () => {
                 savedMessages={savedMessages}
                 messages={messages}
                 handleMessageAdd={handleMessageAdd}
+                textValue={textValue}
+                setTextValue={setTextValue}
               />
             }
           />
