@@ -105,7 +105,8 @@ export const Main = ({
         formData.append('file', record.raw, 'voice.mp3');
         const data = await speechflowApi.sendVoice(formData, selectedLanguage);
 
-        if (!data.taskId) throw new Error('Speechflow sending voice error.');
+        if (!data.taskId)
+          throw new Error(data?.msg || 'Speechflow sending voice error.');
 
         let res;
         res = await speechflowApi.getTranscription(data.taskId);
@@ -116,7 +117,9 @@ export const Main = ({
         if (res.code === SPEECHFLOW_GET_SUCCESS_CODE) {
           setTranscription(res.result.trim().replace(/\s+/g, ' '));
         } else {
-          throw new Error('Speechflow getting transcription error.');
+          throw new Error(
+            data?.msg || 'Speechflow getting transcription error.'
+          );
         }
       } catch (err) {
         handleMessageAdd(createMessage(ERROR_COMMON_TEXT, 'error'));
