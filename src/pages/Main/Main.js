@@ -96,11 +96,12 @@ export const Main = ({
 
           if (res.code === 11000) {
             setTranscription(res.result.trim().replace(/\s+/g, ' '));
-            setIsRecordLoading(false);
           }
         }
       } catch (err) {
         console.log('err', err);
+      } finally {
+        setIsRecordLoading(false);
       }
     },
     [selectedLanguage]
