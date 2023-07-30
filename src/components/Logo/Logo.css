@@ -1,0 +1,8 @@
+.logo {
+  display: flex;
+  transition: 0.3s;
+}
+
+.logo:hover {
+  filter: var(--filter-brand);
+}

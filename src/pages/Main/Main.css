@@ -1,0 +1,69 @@
+.chat {
+  margin: 0;
+  padding: 0 0 12px;
+  min-height: 580px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.chat__from {
+  margin: 0;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.chat__input-wrap {
+  position: relative;
+  padding: 10px 16px;
+  display: flex;
+  gap: 8px;
+  background-color: var(--color-bg-secondary);
+  border: var(--border-primary);
+  border-radius: 16px;
+  transition: 0.3s;
+}
+
+.chat__input-wrap:hover {
+  background-color: var(--color-bg-tertiary);
+  border: var(--border-brand);
+}
+
+.chat__btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.chat__btn:hover {
+  background-color: var(--color-bg-cards-user);
+}
+
+.chat__btn:disabled {
+  background-color: var(--color-bg-secondary);
+  pointer-events: none;
+}
+
+.chat__mic-btn {
+  background: url(../../assets/icons/microphone.svg) var(--color-bg-brand)
+    no-repeat center / 20px;
+}
+
+.chat__mic-btn:hover {
+  background-color: #ebefff;
+}
+
+.chat__mic-btn_active {
+  transform: scale(1.2);
+}
+
+.chat__send-btn {
+  background: url(../../assets/icons/send-btn.svg) var(--color-bg-brand)
+    no-repeat center / 20px;
+}

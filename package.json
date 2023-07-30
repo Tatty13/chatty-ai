@@ -1,0 +1,64 @@
+{
+  "name": "chatty-ai",
+  "version": "0.1.0",
+  "private": true,
+  "contributors": [
+    {
+      "name": "Tatiana Ivanova",
+      "url": "https://github.com/Tatty13"
+    },
+    {
+      "name": "Rinat Mujaurov",
+      "url": "https://github.com/RinatMujaurov"
+    }
+  ],
+  "description": "A voice assistant based on artificial intelligence that allows users to ask a question by voice and receive a text response.",
+  "homepage": "https://Tatty13.github.io/chatty-ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tatty13/chatty-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tatty13/chatty-ai/issues"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "5.17.0",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "13.5.0",
+    "mic-recorder-to-mp3": "2.2.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.14.2",
+    "react-scripts": "5.0.1",
+    "web-vitals": "2.1.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "gh-pages": "5.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

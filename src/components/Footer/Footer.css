@@ -1,0 +1,11 @@
+.footer {
+  margin: 0 auto;
+  padding: 16px 0;
+}
+
+.footer__copyright {
+  margin: 0;
+  font-weight: var(--text-weight-xs, 400);
+  font-size: var(--text-size-x, 12px);
+  line-height: var(--text-line-xs, 20px);
+}

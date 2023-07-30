@@ -1,0 +1,53 @@
+.nav__list {
+  padding: 0;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.nav__link {
+  position: relative;
+  display: flex;
+  padding: 10px 16px;
+  color: var(--color-text-primary);
+  font-weight: var(--text-weight-s, 500);
+  font-size: var(--text-size-s);
+  line-height: var(--text-line-xs);
+  transition: 0.3s;
+}
+
+.nav__link:not(.nav__link_active):not(.nav__link_type_auth)::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--color-bg-brand);
+  transition: 0.3s;
+}
+
+.nav__link:not(.nav__link_active):not(.nav__link_type_auth):hover::before {
+  width: 100%;
+  left: 0;
+}
+
+.nav__link_type_auth {
+  margin-left: 16px;
+  width: 127px;
+  box-sizing: border-box;
+  align-content: center;
+  justify-content: flex-end;
+  background: url(../../assets/icons/radix-icons_person.svg) no-repeat
+    var(--color-bg-brand) 16px / 20px;
+  border-radius: 16px;
+}
+
+.nav__link_type_auth:hover {
+  background-color: var(--color-bg-brand-hover);
+}
+
+.nav__link_active {
+  border-bottom: var(--border-brand);
+}
