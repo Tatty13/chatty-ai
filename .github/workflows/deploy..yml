@@ -7,10 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: github-pages
-    env:
-      REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
-      REACT_APP_SPEECHFLOW_KEY_ID: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_ID }}
-      REACT_APP_SPEECHFLOW_KEY_SECRET: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,9 +15,12 @@ jobs:
           npm install
           npm run-script build
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.0.0
+        uses: peaceiris/actions-gh-pages@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: build
-          secrets: inherit
+          env:
+            REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
+            REACT_APP_SPEECHFLOW_KEY_ID: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_ID }}
+            REACT_APP_SPEECHFLOW_KEY_SECRET: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_SECRET }}
