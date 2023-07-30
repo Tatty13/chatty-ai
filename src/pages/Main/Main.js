@@ -14,6 +14,8 @@ import { speechflowApi } from '../../api/SpeechflowApi';
 import {
   ERROR_COMMON_TEXT,
   ERROR_RECORDING,
+  SPEECHFLOW_GET_PROGRESS_CODE,
+  SPEECHFLOW_GET_SUCCESS_CODE,
   createMessage,
   getGptBotReply,
 } from '../../utils';
@@ -92,25 +94,26 @@ export const Main = ({
       try {
         const formData = new FormData();
         formData.append('file', record.raw, 'voice.mp3');
-
         const data = await speechflowApi.sendVoice(formData, selectedLanguage);
 
-        if (data?.taskId) {
-          let res;
-          res = await speechflowApi.getTranscription(data.taskId);
-          while (res.code === 11001) {
-            res = await speechflowApi.getTranscription(data.taskId);
-          }
-          setRecord({});
+        if (!data.taskId) throw new Error('Speechflow sending voice error.');
 
-          if (res.code === 11000) {
-            setTranscription(res.result.trim().replace(/\s+/g, ' '));
-          }
+        let res;
+        res = await speechflowApi.getTranscription(data.taskId);
+        while (res.code === SPEECHFLOW_GET_PROGRESS_CODE) {
+          res = await speechflowApi.getTranscription(data.taskId);
+        }
+
+        if (res.code === SPEECHFLOW_GET_SUCCESS_CODE) {
+          setTranscription(res.result.trim().replace(/\s+/g, ' '));
+        } else {
+          throw new Error('Speechflow getting transcription error.');
         }
       } catch (err) {
         handleMessageAdd(createMessage(ERROR_COMMON_TEXT, 'error'));
         console.error('Error sending voice to Speechflow:', err);
       } finally {
+        setRecord({});
         setIsRecordLoading(false);
       }
     },
