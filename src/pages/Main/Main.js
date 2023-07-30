@@ -7,6 +7,7 @@ import {
   ForwardedMessageList,
   LangSelect,
   MicBtn,
+  Preloader,
   TextArea,
 } from '../../components';
 import { speechflowApi } from '../../api/SpeechflowApi';
@@ -29,6 +30,8 @@ export const Main = ({
   const [record, setRecord] = useState({});
   const [recorder, setRecorder] = useState(null);
   const [transcription, setTranscription] = useState('');
+  const [isRecordLoading, setIsRecordLoading] = useState(false);
+  const [isBotAnswerLoading, setIsBotAnswerLoading] = useState(false);
 
   const messagesContainerRef = useRef(null);
 
@@ -45,6 +48,7 @@ export const Main = ({
     if (recorder) {
       try {
         setIsRecordStart(true);
+        setIsRecordLoading(true);
         await recorder.start();
       } catch (err) {
         console.error(err);
@@ -92,6 +96,7 @@ export const Main = ({
 
           if (res.code === 11000) {
             setTranscription(res.result.trim().replace(/\s+/g, ' '));
+            setIsRecordLoading(false);
           }
         }
       } catch (err) {
@@ -111,6 +116,8 @@ export const Main = ({
       handleMessageAdd(createMessage(botMessage, 'bot'));
     } catch (error) {
       console.error('Error sending message to ChatGPT:', error);
+    } finally {
+      setIsBotAnswerLoading(false);
     }
   };
 
@@ -121,6 +128,7 @@ export const Main = ({
     handleUserMessageSubmit(textValue);
     setTextValue('');
     setTextRows(1);
+    setIsBotAnswerLoading(true);
   };
 
   const scrollToBottom = () => {
@@ -129,6 +137,9 @@ export const Main = ({
         messagesContainerRef.current.scrollHeight;
     }
   };
+
+  const isMicBtnDisabled =
+    (isRecordLoading && !isRecordStart) || isBotAnswerLoading;
 
   useEffect(() => {
     if (transcription) {
@@ -170,12 +181,15 @@ export const Main = ({
         className='chat__from'
         onSubmit={handleSubmit}>
         <div className='chat__input-wrap'>
+          {isRecordLoading && <Preloader place='textarea' />}
+          {isBotAnswerLoading && <Preloader place='chat' />}
           <TextArea
             isReadyToGetAnswe={isReadyToGetAnswer}
             setIsReadyToGetAnswer={setIsReadyToGetAnswer}
             textValue={textValue}
             setTextValue={setTextValue}
             textRows={textRows}
+            isRecordLoading={isRecordLoading}
           />
 
           <LangSelect
@@ -186,11 +200,12 @@ export const Main = ({
           />
         </div>
         {isReadyToGetAnswer ? (
-          <ChatSendBtn />
+          <ChatSendBtn isDisabled={isBotAnswerLoading} />
         ) : (
           <MicBtn
             isRecordStart={isRecordStart}
             onClick={handleMicBtnClick}
+            isDisabled={isMicBtnDisabled}
           />
         )}
       </form>

@@ -19,6 +19,7 @@
 }
 
 .chat__input-wrap {
+  position: relative;
   padding: 10px 16px;
   display: flex;
   gap: 8px;
@@ -46,6 +47,7 @@
 
 .chat__btn:disabled {
   background-color: var(--color-bg-secondary);
+  pointer-events: none;
 }
 
 .chat__mic-btn {

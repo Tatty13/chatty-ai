@@ -1,4 +1,4 @@
-export const MicBtn = ({ isRecordStart, onClick }) => {
+export const MicBtn = ({ isRecordStart, onClick, isDisabled }) => {
   return (
     <button
       type='button'
@@ -6,6 +6,7 @@ export const MicBtn = ({ isRecordStart, onClick }) => {
         isRecordStart && 'chat__mic-btn_active'
       }`}
       onClick={onClick}
+      disabled={isDisabled}
     />
   );
 };
