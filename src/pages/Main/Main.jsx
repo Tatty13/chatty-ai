@@ -11,7 +11,14 @@ import {
   TextArea,
 } from '../../components';
 import { speechflowApi } from '../../api/SpeechflowApi';
-import { createMessage, getGptBotReply } from '../../utils';
+import {
+  ERROR_COMMON_TEXT,
+  ERROR_RECORDING,
+  SPEECHFLOW_GET_PROGRESS_CODE,
+  SPEECHFLOW_GET_SUCCESS_CODE,
+  createMessage,
+  getGptBotReply,
+} from '../../utils';
 
 export const Main = ({
   onSaveBtnClick,
@@ -39,6 +46,9 @@ export const Main = ({
     setIsLangListVisible((prevShow) => !prevShow);
   };
 
+  /**
+   * @param {string} language
+   */
   const handleLanguageSelect = (language) => {
     setSelectedLanguage(language);
     toggleLangListVisibility();
@@ -51,7 +61,10 @@ export const Main = ({
         setIsRecordLoading(true);
         await recorder.start();
       } catch (err) {
-        console.error(err);
+        setIsRecordStart(false);
+        setIsRecordLoading(false);
+        handleMessageAdd(createMessage(ERROR_RECORDING, 'error'));
+        console.error('Error:', err);
       }
     }
   }
@@ -72,64 +85,83 @@ export const Main = ({
           url: URL.createObjectURL(file),
         });
       } catch (err) {
-        alert('We could not retrieve your message');
-        console.log(err);
+        setIsRecordLoading(false);
+        handleMessageAdd(createMessage(ERROR_RECORDING, 'error'));
+        console.error('Error:', err);
       }
     }
   }
 
   const sendVoiceToSpeechflow = useCallback(
+    /**
+     * @param {object} record
+     * @param {Blob} record.raw
+     * @param {File} record.file
+     * @param {string} record.url
+     */
     async (record) => {
       try {
         const formData = new FormData();
         formData.append('file', record.raw, 'voice.mp3');
-
         const data = await speechflowApi.sendVoice(formData, selectedLanguage);
 
-        if (data?.taskId) {
-          let res;
-          res = await speechflowApi.getTranscription(data.taskId);
-          while (res.code === 11001) {
-            res = await speechflowApi.getTranscription(data.taskId);
-          }
-          setRecord({});
+        if (!data.taskId)
+          throw new Error(data?.msg || 'Speechflow sending voice error.');
 
-          if (res.code === 11000) {
-            setTranscription(res.result.trim().replace(/\s+/g, ' '));
-          }
+        let res;
+        res = await speechflowApi.getTranscription(data.taskId);
+        while (res.code === SPEECHFLOW_GET_PROGRESS_CODE) {
+          res = await speechflowApi.getTranscription(data.taskId);
+        }
+
+        if (res.code === SPEECHFLOW_GET_SUCCESS_CODE) {
+          setTranscription(res.result.trim().replace(/\s+/g, ' '));
+        } else {
+          throw new Error(
+            data?.msg || 'Speechflow getting transcription error.'
+          );
         }
       } catch (err) {
-        console.log('err', err);
+        handleMessageAdd(createMessage(ERROR_COMMON_TEXT, 'error'));
+        console.error('Error sending voice to Speechflow:', err);
       } finally {
+        setRecord({});
         setIsRecordLoading(false);
       }
     },
-    [selectedLanguage]
+    [selectedLanguage, handleMessageAdd]
   );
 
   function handleMicBtnClick() {
     isRecordStart ? stopRecordVoice() : startRecordVoice();
   }
 
+  /**
+   * @param {String} userMessage
+   */
   const handleUserMessageSubmit = async (userMessage) => {
     try {
       const botMessage = await getGptBotReply(userMessage);
       handleMessageAdd(createMessage(botMessage, 'bot'));
     } catch (error) {
+      handleMessageAdd(createMessage(ERROR_COMMON_TEXT, 'error'));
       console.error('Error sending message to ChatGPT:', error);
     } finally {
       setIsBotAnswerLoading(false);
     }
   };
 
+  /**
+   * @param {Event} evt
+   */
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setIsReadyToGetAnswer(false);
     handleMessageAdd(createMessage(textValue, 'user'));
+    setIsBotAnswerLoading(true);
     handleUserMessageSubmit(textValue);
     setTextValue('');
     setTextRows(1);
-    setIsBotAnswerLoading(true);
   };
 
   const scrollToBottom = () => {

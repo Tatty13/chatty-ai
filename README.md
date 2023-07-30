@@ -9,7 +9,7 @@ A personal AI interview coach who will help you to prepare for interviews and ov
 ## Team
 
 `Project manager`:  
-👩🏼‍💼 Anna Chernova | [Portfolio]()
+👩🏼‍💼 Anna Chernova | [Portfolio](https://drive.google.com/file/d/1Fo6407SSkh2I-MJYx2rokiU7NtiYZkNy/view?usp=sharing)
 
 `UX/UI Designers`:  
 👩🏻‍🎨 Kseniia Ivanova | [Portfolio](https://www.behance.net/0fd7bbe8)\
