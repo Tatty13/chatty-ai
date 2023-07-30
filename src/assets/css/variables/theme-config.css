@@ -8,6 +8,7 @@
   --color-bg-cards-bot: var(--color-white, #f6f6f6);
   --color-bg-cards-user: var(--color-light-blue, #ebefff);
   --color-bg-brand-hover: var(--color-blue, #4f73fa);
+  --color-bg-error: var(--color-red-2, #fca496);
 
   --color-text-brand: var(--color-purple, #a1b5ff);
   --color-text-primary: var(--color-black, #1e1f1e);

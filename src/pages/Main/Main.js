@@ -11,7 +11,12 @@ import {
   TextArea,
 } from '../../components';
 import { speechflowApi } from '../../api/SpeechflowApi';
-import { createMessage, getGptBotReply } from '../../utils';
+import {
+  ERROR_COMMON_TEXT,
+  ERROR_RECORDING,
+  createMessage,
+  getGptBotReply,
+} from '../../utils';
 
 export const Main = ({
   onSaveBtnClick,
@@ -51,7 +56,10 @@ export const Main = ({
         setIsRecordLoading(true);
         await recorder.start();
       } catch (err) {
-        console.error(err);
+        setIsRecordStart(false);
+        setIsRecordLoading(false);
+        handleMessageAdd(createMessage(ERROR_RECORDING, 'error'));
+        console.error('Error:', err);
       }
     }
   }
@@ -72,8 +80,9 @@ export const Main = ({
           url: URL.createObjectURL(file),
         });
       } catch (err) {
-        alert('We could not retrieve your message');
-        console.log(err);
+        setIsRecordLoading(false);
+        handleMessageAdd(createMessage(ERROR_RECORDING, 'error'));
+        console.error('Error:', err);
       }
     }
   }
@@ -99,12 +108,13 @@ export const Main = ({
           }
         }
       } catch (err) {
-        console.log('err', err);
+        handleMessageAdd(createMessage(ERROR_COMMON_TEXT, 'error'));
+        console.error('Error sending voice to Speechflow:', err);
       } finally {
         setIsRecordLoading(false);
       }
     },
-    [selectedLanguage]
+    [selectedLanguage, handleMessageAdd]
   );
 
   function handleMicBtnClick() {
@@ -116,6 +126,7 @@ export const Main = ({
       const botMessage = await getGptBotReply(userMessage);
       handleMessageAdd(createMessage(botMessage, 'bot'));
     } catch (error) {
+      handleMessageAdd(createMessage(ERROR_COMMON_TEXT, 'error'));
       console.error('Error sending message to ChatGPT:', error);
     } finally {
       setIsBotAnswerLoading(false);
@@ -126,10 +137,10 @@ export const Main = ({
     evt.preventDefault();
     setIsReadyToGetAnswer(false);
     handleMessageAdd(createMessage(textValue, 'user'));
+    setIsBotAnswerLoading(true);
     handleUserMessageSubmit(textValue);
     setTextValue('');
     setTextRows(1);
-    setIsBotAnswerLoading(true);
   };
 
   const scrollToBottom = () => {
