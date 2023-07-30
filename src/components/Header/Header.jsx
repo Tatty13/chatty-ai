@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css';
 
-import { Nav, Logo } from '../';
+import { Nav, Logo } from '..';
 
 const Header = () => {
   return (

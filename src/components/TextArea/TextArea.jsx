@@ -12,6 +12,9 @@ export const TextArea = ({
 }) => {
   const textareaRef = useRef(null);
 
+  /**
+   * @param {Event} event
+   */
   const handleTextChange = (event) => {
     setTextValue(event.target.value.trimStart()); // Обновляем состояние textValue при изменении текста в поле ввода
     adjustTextareaHeight(); // Вызываем функцию для автоматического изменения высоты textarea
@@ -28,6 +31,9 @@ export const TextArea = ({
     }
   };
 
+  /**
+   * @param {Event} evt
+   */
   const handleEnterKey = (evt) => {
     if (
       evt.keyCode === 13 &&
