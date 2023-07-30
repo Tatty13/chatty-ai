@@ -94,18 +94,15 @@ export const Main = ({
       try {
         const formData = new FormData();
         formData.append('file', record.raw, 'voice.mp3');
-
         const data = await speechflowApi.sendVoice(formData, selectedLanguage);
 
         if (!data.taskId) throw new Error('Speechflow sending voice error.');
 
         let res;
         res = await speechflowApi.getTranscription(data.taskId);
-
         while (res.code === SPEECHFLOW_GET_PROGRESS_CODE) {
           res = await speechflowApi.getTranscription(data.taskId);
         }
-        setRecord({});
 
         if (res.code === SPEECHFLOW_GET_SUCCESS_CODE) {
           setTranscription(res.result.trim().replace(/\s+/g, ' '));
@@ -116,6 +113,7 @@ export const Main = ({
         handleMessageAdd(createMessage(ERROR_COMMON_TEXT, 'error'));
         console.error('Error sending voice to Speechflow:', err);
       } finally {
+        setRecord({});
         setIsRecordLoading(false);
       }
     },
