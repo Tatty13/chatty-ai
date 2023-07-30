@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: build
-          env:
-            REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
-            REACT_APP_SPEECHFLOW_KEY_ID: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_ID }}
-            REACT_APP_SPEECHFLOW_KEY_SECRET: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_SECRET }}
+        env:
+          REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
+          REACT_APP_SPEECHFLOW_KEY_ID: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_ID }}
+          REACT_APP_SPEECHFLOW_KEY_SECRET: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_SECRET }}
