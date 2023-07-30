@@ -13,6 +13,9 @@ export const Favourites = ({ savedMessages, onStarClick }) => {
     setIsSortOptionsVisible(!isSortOptionsVisible);
   };
 
+  /**
+   * @param {number} idx
+   */
   const handleMessagesSort = (idx) => {
     setActiveSortOptionIdx(idx);
     toggleSortOptionsVisibility();

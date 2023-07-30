@@ -46,6 +46,9 @@ export const Main = ({
     setIsLangListVisible((prevShow) => !prevShow);
   };
 
+  /**
+   * @param {string} language
+   */
   const handleLanguageSelect = (language) => {
     setSelectedLanguage(language);
     toggleLangListVisibility();
@@ -90,6 +93,12 @@ export const Main = ({
   }
 
   const sendVoiceToSpeechflow = useCallback(
+    /**
+     * @param {object} record
+     * @param {Blob} record.raw
+     * @param {File} record.file
+     * @param {string} record.url
+     */
     async (record) => {
       try {
         const formData = new FormData();
@@ -124,6 +133,9 @@ export const Main = ({
     isRecordStart ? stopRecordVoice() : startRecordVoice();
   }
 
+  /**
+   * @param {String} userMessage
+   */
   const handleUserMessageSubmit = async (userMessage) => {
     try {
       const botMessage = await getGptBotReply(userMessage);
@@ -136,6 +148,9 @@ export const Main = ({
     }
   };
 
+  /**
+   * @param {Event} evt
+   */
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setIsReadyToGetAnswer(false);

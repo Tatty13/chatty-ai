@@ -16,18 +16,27 @@ class SpeechflowApi extends Api {
     };
   }
 
-  sendVoice(file, lang = 'en') {
+  /**
+   * @param {FormData} formData - data with audio file
+   * @param {string} lang
+   * @returns {Promise}
+   */
+  sendVoice(formData, lang = 'en') {
     return super.request(
       `/create?lang=${lang}`,
       {
         method: 'POST',
-        body: file,
+        body: formData,
         ...this._reqOpt,
       },
       'getTranscription'
     );
   }
 
+  /**
+   * @param {string} taskId
+   * @returns {Promise}
+   */
   getTranscription(taskId) {
     return super.request(
       `/query?taskId=${taskId}&resultType=4`,

@@ -14,7 +14,7 @@ const App = () => {
 
   /**
    * @param {object} message
-   * @param {'bot' | 'user' | 'poll'} message.sender
+   * @param {'bot' | 'user' | 'poll' | 'error'} message.sender
    * @param {String} message.content
    */
   function saveMessage({ sender, content }) {
@@ -22,19 +22,38 @@ const App = () => {
     setSavedMessages((prev) => [...prev, { sender, content, date }]);
   }
 
+  /**
+   * @param {object} message
+   * @param {'bot' | 'user' | 'poll' | 'error'} message.sender
+   * @param {String} message.content
+   */
   function removeMessageFromSaved({ sender, content }) {
     setSavedMessages((prev) =>
       prev.filter((msg) => msg.content !== content || msg.sender !== sender)
     );
   }
 
+  /**
+   * @param {Boolean} isSaved
+   * @param {object} message
+   * @param {'bot' | 'user' | 'poll' | 'error'} message.sender
+   * @param {String} message.content
+   */
   function handleSaveMsgBtnClick(isSaved, message) {
     isSaved ? removeMessageFromSaved(message) : saveMessage(message);
   }
 
-  const handleMessageAdd = useCallback((message) => {
-    setMessages((prev) => [...prev, message]);
-  }, []);
+  const handleMessageAdd = useCallback(
+    /**
+     * @param {object} message
+     * @param {'bot' | 'user' | 'poll' | 'error'} message.sender
+     * @param {String} message.content
+     */
+    (message) => {
+      setMessages((prev) => [...prev, message]);
+    },
+    []
+  );
 
   useEffect(() => {
     localStorage.setItem('savedMessages', JSON.stringify(savedMessages));
