@@ -16,9 +16,6 @@ const gptApiOptions = {
   },
 };
 
-console.log('REACT_APP_SPEECHFLOW_KEY_ID', REACT_APP_SPEECHFLOW_KEY_ID);
-console.log('REACT_APP_SPEECHFLOW_KEY_SECRET', REACT_APP_SPEECHFLOW_KEY_SECRET);
-
 const speechflowApiOptions = {
   baseURL: 'https://api.speechflow.io/asr/file/v1',
   errorMessages: {
