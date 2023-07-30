@@ -9,8 +9,8 @@ jobs:
     environment: github-pages
     env:
       REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
-      REACT_APP_SPEECHFLOW_KEY_ID: ${{ secret.REACT_APP_SPEECHFLOW_KEY_ID }}
-      REACT_APP_SPEECHFLOW_KEY_SECRET: ${{ secret.REACT_APP_SPEECHFLOW_KEY_SECRET }}
+      REACT_APP_SPEECHFLOW_KEY_ID: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_ID }}
+      REACT_APP_SPEECHFLOW_KEY_SECRET: ${{ secrets.REACT_APP_SPEECHFLOW_KEY_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
