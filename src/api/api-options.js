@@ -1,4 +1,8 @@
-const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+const {
+  REACT_APP_OPENAI_API_KEY = '',
+  REACT_APP_SPEECHFLOW_KEY_ID = '',
+  REACT_APP_SPEECHFLOW_KEY_SECRET = '',
+} = process.env;
 
 const gptApiOptions = {
   baseURL: 'https://api.openai.com/v1',
@@ -8,9 +12,12 @@ const gptApiOptions = {
   headers: {
     'Content-Type': 'application/json; charset=UTF-8',
     Accept: 'application/json',
-    Authorization: 'Bearer ' + apiKey,
+    Authorization: 'Bearer ' + REACT_APP_OPENAI_API_KEY,
   },
 };
+
+console.log('REACT_APP_SPEECHFLOW_KEY_ID', REACT_APP_SPEECHFLOW_KEY_ID);
+console.log('REACT_APP_SPEECHFLOW_KEY_SECRET', REACT_APP_SPEECHFLOW_KEY_SECRET);
 
 const speechflowApiOptions = {
   baseURL: 'https://api.speechflow.io/asr/file/v1',
@@ -18,8 +25,8 @@ const speechflowApiOptions = {
     getTranscription: 'Unfortunately, the audio was not converted to text.',
   },
   headers: {
-    keyId: 'wQ0bNBT03X2jWDXH',
-    keySecret: 'TJC16xMCCEqT1G4H',
+    keyId: REACT_APP_SPEECHFLOW_KEY_ID,
+    keySecret: REACT_APP_SPEECHFLOW_KEY_SECRET,
   },
 };
 
