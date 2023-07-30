@@ -14,3 +14,5 @@ export * from './ChatSendBtn/ChatSendBtn';
 export * from './LangList/LangList';
 export * from './LangSelect/LangSelect';
 export * from './TextArea/TextArea';
+
+export * from './Preloader/Preloader';

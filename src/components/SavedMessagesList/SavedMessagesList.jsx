@@ -1,7 +1,6 @@
 import './SavedMessagesList.css';
 
 export const SavedMessagesList = ({ savedMessages, onStarClick }) => {
-  console.log('savedMessages', savedMessages);
   const savedMessagesList = savedMessages.map(
     ({ sender, content, date }, i) => (
       <li

@@ -8,6 +8,7 @@ export const TextArea = ({
   textValue,
   setTextValue,
   textRows,
+  isRecordLoading,
 }) => {
   const textareaRef = useRef(null);
 
@@ -42,7 +43,7 @@ export const TextArea = ({
     <textarea
       ref={textareaRef}
       className='chat__textarea'
-      placeholder='Send a message'
+      placeholder={!isRecordLoading ? 'Send a message' : ''}
       value={textValue}
       rows={textRows}
       onChange={handleTextChange}
