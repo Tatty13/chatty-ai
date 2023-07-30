@@ -12,13 +12,15 @@ const MessageList = ({ messages, savedMessages, onSaveBtnClick }, ref) => {
         key={i}
         className={`chat__message chat__message_sender_${sender}`}>
         <p className='chat__message_text'>{content}</p>
-        <button
-          type='button'
-          className={`btn chat__message-btn chat__message-btn_sender_${sender} ${
-            isSaved ? 'chat__message-btn_saved' : ''
-          }`}
-          onClick={() => onSaveBtnClick(isSaved, { content, sender })}
-        />
+        {sender !== 'error' && (
+          <button
+            type='button'
+            className={`btn chat__message-btn chat__message-btn_sender_${sender} ${
+              isSaved ? 'chat__message-btn_saved' : ''
+            }`}
+            onClick={() => onSaveBtnClick(isSaved, { content, sender })}
+          />
+        )}
       </li>
     );
   });

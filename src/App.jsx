@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { Header, Footer, Login } from './components';
@@ -32,9 +32,9 @@ const App = () => {
     isSaved ? removeMessageFromSaved(message) : saveMessage(message);
   }
 
-  function handleMessageAdd(message) {
+  const handleMessageAdd = useCallback((message) => {
     setMessages((prev) => [...prev, message]);
-  }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('savedMessages', JSON.stringify(savedMessages));

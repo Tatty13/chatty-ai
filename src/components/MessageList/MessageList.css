@@ -35,16 +35,27 @@
   transition: 0.3s;
 }
 
-.chat__message:not(.chat__message_sender_poll):hover {
+.chat__message:not(.chat__message_sender_poll):not(
+    .chat__message_sender_error
+  ):hover {
   border-color: var(--color-blue-2);
 }
 
-.chat__message_sender_bot {
+.chat__message_sender_bot,
+.chat__message_sender_error {
   align-self: flex-start;
   justify-content: flex-end;
-  background-color: var(--color-bg-cards-bot);
   background-image: url(../../assets/icons/carbon_chat-bot.svg);
   background-position: left 16px top 16px;
+}
+
+.chat__message_sender_bot {
+  background-color: var(--color-bg-cards-bot);
+}
+
+.chat__message_sender_error {
+  background-color: var(--color-bg-error);
+  pointer-events: none;
 }
 
 .chat__message_sender_user {
