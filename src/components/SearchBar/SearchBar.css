@@ -1,0 +1,40 @@
+
+.tabs__search {
+	box-sizing: border-box;
+	outline: 0;
+	width: 437px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+}
+
+.tabs__search:hover {
+	border-bottom: var(--border-brand);
+}
+
+
+.tabs__text {
+	border: none; 
+   outline: none; 
+   background-color: transparent;
+	width: 100%;
+	background-color: var(--color-bg-primary);
+	display: block;
+}
+
+.tabs__text:hover {
+	color: var(--color-text-brand);
+}
+
+.tabs__button {
+	margin: 0;
+	padding: 0;
+	width: 52px;
+	height: 40px;
+	background: url(../../assets/icons/search.svg) no-repeat center;
+	border: none;
+}
+
+.tabs__button:hover {
+	background: url(../../assets/icons/searchactive.svg) no-repeat center;
+}
