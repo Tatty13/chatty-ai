@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SearchBar from '../SearchBar/SearchBar';
 import './TabsNav.css';
 
 const TabsNav = () => {
+
+	const handleSearch = (searchTerm) => {
+		
+		  console.log('Результаты поиска:',  searchTerm);
+	 };
+
 	return(
 		<div className='tabs'>
         <nav className='tabs__nav'>
@@ -21,10 +28,7 @@ const TabsNav = () => {
               </li>
             </ul>
         </nav>
-        <div className='tabs__search'>
-            <input className="tabs__text tabs__text_active" type="text" placeholder="" />
-            <button type='search' className="tabs__button"></button>
-        </div>
+        <SearchBar onSearch={handleSearch}/>
       </div>
 	)
 }

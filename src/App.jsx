@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { Header, Footer, Login } from './components';
-import { Articles, Favourites, Main } from './pages';
+import { Articles, Favourites, Main, NotFoundPage } from './pages';
 import { getDate, initialMessages } from './utils';
 
 const App = () => {
@@ -94,6 +94,7 @@ const App = () => {
             path='/login'
             element={<Login />}
           />
+          <Route path="*" Component={NotFoundPage} />
         </Routes>
       </main>
       <Footer />
