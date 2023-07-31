@@ -61,6 +61,14 @@ A personal AI interview coach who will help you to prepare for interviews and ov
 
 ---
 
+## Features
+
+* 🎤 voice message recording and transcription
+* 🤖 getting text message from OpenAI
+* 💬 actions with messages (save/remove from saved)
+
+---
+
 ## Project API and libraries
 
 * [Microphone Recorder to Mp3](https://www.npmjs.com/package/mic-recorder-to-mp3) - records a microphone audio input and get an audio/mp3 file in the end.
